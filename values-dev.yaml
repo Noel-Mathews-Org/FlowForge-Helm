@@ -1,7 +1,6 @@
 global:
   environment: dev
   domain: dev.flowforge.fun
-
 gateway:
   enabled: true
 frontend:
@@ -10,6 +9,8 @@ auth-service:
   enabled: true
 project-service:
   enabled: true
+  image:
+    tag: cb90618
 task-service:
   enabled: true
 analysis-service:
