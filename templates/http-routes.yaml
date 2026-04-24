@@ -12,12 +12,12 @@ spec:
         type: PathPrefix
         value: /api
     backendRefs:
-    - name: {{ .Release.Name }}-gateway-active
+    - name: gateway
       port: 80
   - matches:
     - path:
         type: PathPrefix
         value: /
     backendRefs:
-    - name: {{ .Release.Name }}-frontend-active
+    - name: frontend
       port: 80
