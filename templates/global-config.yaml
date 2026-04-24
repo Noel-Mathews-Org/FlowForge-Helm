@@ -22,5 +22,12 @@ data:
   SMTP_FROM_EMAIL: "bloodymaryy77@gmail.com"
   FRONTEND_URL: "https://{{ .Values.global.domain }}"
   
+  # Database Config
+  DATABASE_URL_AUTH: "postgres://postgres:postgres@postgres:5432/auth_db"
+  DATABASE_URL_PROJECT: "postgres://postgres:postgres@postgres:5432/project_db"
+  DATABASE_URL_TASK: "postgres://postgres:postgres@postgres:5432/task_db"
+  DATABASE_URL_ANALYTICS: "postgres://postgres:postgres@postgres:5432/analytics_db"
+  REDIS_URL: "redis://redis:6379"
+
   # App Port
   APP_PORT: "80"
