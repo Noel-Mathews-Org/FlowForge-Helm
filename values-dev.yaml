@@ -15,3 +15,5 @@ task-service:
   enabled: true
 analysis-service:
   enabled: true
+  image:
+    tag: cb90618
