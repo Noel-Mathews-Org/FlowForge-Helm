@@ -15,6 +15,8 @@ project-service:
     tag: cb90618
 task-service:
   enabled: true
+  image:
+    tag: cb90618
 analysis-service:
   enabled: true
   image:
