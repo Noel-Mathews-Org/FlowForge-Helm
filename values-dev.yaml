@@ -11,6 +11,8 @@ frontend:
     tag: cb90618
 auth-service:
   enabled: true
+  image:
+    tag: cb90618
 project-service:
   enabled: true
   image:
