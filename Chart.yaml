@@ -8,18 +8,24 @@ dependencies:
   - name: gateway
     version: 0.1.0
     repository: "file://./charts/gateway"
+    condition: gateway.enabled
   - name: frontend
     version: 0.1.0
     repository: "file://./charts/frontend"
+    condition: frontend.enabled
   - name: auth-service
     version: 0.1.0
     repository: "file://./charts/auth-service"
+    condition: auth-service.enabled
   - name: project-service
     version: 0.1.0
     repository: "file://./charts/project-service"
+    condition: project-service.enabled
   - name: task-service
     version: 0.1.0
     repository: "file://./charts/task-service"
+    condition: task-service.enabled
   - name: analysis-service
     version: 0.1.0
     repository: "file://./charts/analysis-service"
+    condition: analysis-service.enabled
