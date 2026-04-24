@@ -42,6 +42,10 @@ spec:
             matchLabels:
               tier: frontend
     - to:
+        - podSelector:
+            matchLabels:
+              tier: data
+    - to:
         - ipBlock:
             cidr: 10.96.0.0/12
 
