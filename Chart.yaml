@@ -7,19 +7,19 @@ appVersion: "1.0.0"
 dependencies:
   - name: gateway
     version: 0.1.0
-    repository: "file://charts/gateway"
+    repository: "file://./charts/gateway"
   - name: frontend
     version: 0.1.0
-    repository: "file://charts/frontend"
+    repository: "file://./charts/frontend"
   - name: auth-service
     version: 0.1.0
-    repository: "file://charts/auth-service"
+    repository: "file://./charts/auth-service"
   - name: project-service
     version: 0.1.0
-    repository: "file://charts/project-service"
+    repository: "file://./charts/project-service"
   - name: task-service
     version: 0.1.0
-    repository: "file://charts/task-service"
+    repository: "file://./charts/task-service"
   - name: analysis-service
     version: 0.1.0
-    repository: "file://charts/analysis-service"
+    repository: "file://./charts/analysis-service"
