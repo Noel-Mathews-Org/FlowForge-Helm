@@ -1,0 +1,16 @@
+global:
+  environment: dev
+  domain: dev.flowforge.fun
+
+gateway:
+  enabled: true
+frontend:
+  enabled: true
+auth-service:
+  enabled: true
+project-service:
+  enabled: true
+task-service:
+  enabled: true
+analysis-service:
+  enabled: true

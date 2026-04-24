@@ -1,0 +1,19 @@
+replicaCount: 2
+
+image:
+  repository: ghcr.io/noel-mathews-org/flowforge/project-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8002
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 96Mi
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 70

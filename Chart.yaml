@@ -1,0 +1,25 @@
+apiVersion: v2
+name: flowforge
+description: Helm Umbrella Chart for FlowForge Microservices
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+dependencies:
+  - name: gateway
+    version: 0.1.0
+    repository: "file://charts/gateway"
+  - name: frontend
+    version: 0.1.0
+    repository: "file://charts/frontend"
+  - name: auth-service
+    version: 0.1.0
+    repository: "file://charts/auth-service"
+  - name: project-service
+    version: 0.1.0
+    repository: "file://charts/project-service"
+  - name: task-service
+    version: 0.1.0
+    repository: "file://charts/task-service"
+  - name: analysis-service
+    version: 0.1.0
+    repository: "file://charts/analysis-service"
