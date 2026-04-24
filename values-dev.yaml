@@ -3,6 +3,8 @@ global:
   domain: dev.flowforge.fun
 gateway:
   enabled: true
+  image:
+    tag: cb90618
 frontend:
   enabled: true
 auth-service:
