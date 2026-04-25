@@ -30,41 +30,16 @@ spec:
         tier: data
         app: postgres
     spec:
-      securityContext:
-        fsGroup: 70
       containers:
       - name: postgres
         image: postgres:16-alpine
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 70
-        resources:
-          requests:
-            cpu: 250m
-            memory: 256Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
         ports:
         - containerPort: 5432
-        startupProbe:
-          exec:
-            command: ["pg_isready", "-U", "postgres"]
-          initialDelaySeconds: 10
-          failureThreshold: 30
-          periodSeconds: 10
-        readinessProbe:
-          exec:
-            command: ["pg_isready", "-U", "postgres"]
-          periodSeconds: 10
         env:
         - name: POSTGRES_USER
           value: "postgres"
         - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: flowforge-secret
-              key: DATABASE_PASSWORD
+          value: "postgres"
         - name: POSTGRES_DB
           value: "flowforge"
         volumeMounts:
