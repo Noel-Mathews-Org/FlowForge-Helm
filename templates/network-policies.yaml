@@ -93,6 +93,14 @@ spec:
     - to:
         - ipBlock:
             cidr: 10.96.0.0/12
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0 # Allow internet access for SMTP
+      ports:
+        - protocol: TCP
+          port: 587
+        - protocol: TCP
+          port: 465
 
 ---
 apiVersion: networking.k8s.io/v1
