@@ -1,13 +1,21 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
+  strategy:
+    blueGreen:
+      activeService: {{ .Release.Name }}-{{ .Chart.Name }}-active
+      previewService: {{ .Release.Name }}-{{ .Chart.Name }}-preview
+      autoPromotionEnabled: false
+      previewReplicaCount: 1
+      scaleDownDelaySeconds: 30
   template:
     metadata:
       labels:
@@ -16,14 +24,16 @@ spec:
     spec:
       affinity:
         podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - {{ .Release.Name }}-{{ .Chart.Name }}
-            topologyKey: "kubernetes.io/hostname"
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - {{ .Release.Name }}-{{ .Chart.Name }}
+              topologyKey: "kubernetes.io/hostname"
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
       securityContext:
         runAsNonRoot: true
@@ -40,7 +50,6 @@ spec:
             - secretRef:
                 name: flowforge-secret
           env:
-
             - name: APP_PORT
               value: "3000"
             - name: GATEWAY_PORT
