@@ -68,6 +68,10 @@ spec:
         - podSelector:
             matchLabels:
               tier: gateway
+    - from:
+        - podSelector:
+            matchLabels:
+              tier: backend
   egress:
     - to:
         - namespaceSelector:
@@ -79,13 +83,9 @@ spec:
         - protocol: TCP
           port: 53
     - to:
-        - ipBlock:
-            cidr: 10.96.0.10/32
-      ports:
-        - protocol: UDP
-          port: 53
-        - protocol: TCP
-          port: 53
+        - podSelector:
+            matchLabels:
+              tier: backend
     - to:
         - podSelector:
             matchLabels:
