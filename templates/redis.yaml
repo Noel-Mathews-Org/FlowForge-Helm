@@ -20,7 +20,6 @@ metadata:
 spec:
   serviceName: "redis"
   replicas: 1
-  minReadySeconds: 15
   selector:
     matchLabels:
       app: redis
@@ -30,34 +29,12 @@ spec:
         tier: data
         app: redis
     spec:
-      securityContext:
-        fsGroup: 999
       containers:
       - name: redis
         image: redis:7-alpine
         command: ["redis-server", "--appendonly", "yes"]
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 999
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 250m
-            memory: 256Mi
         ports:
         - containerPort: 6379
-        startupProbe:
-          exec:
-            command: ["redis-cli", "ping"]
-          initialDelaySeconds: 5
-          failureThreshold: 30
-          periodSeconds: 10
-        readinessProbe:
-          exec:
-            command: ["redis-cli", "ping"]
-          periodSeconds: 10
         volumeMounts:
         - name: redis-data
           mountPath: /data
