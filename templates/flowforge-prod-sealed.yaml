@@ -1,3 +1,4 @@
+{{- if eq .Release.Namespace "prod" }}
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
@@ -13,3 +14,4 @@ spec:
     metadata:
       name: flowforge-secret
       namespace: prod
+{{- end }}
