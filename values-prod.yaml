@@ -1,11 +1,12 @@
 global:
   environment: prod
   domain: flowforge.fun
-
 gateway:
   enabled: true
 frontend:
   enabled: true
+  image:
+    tag: v1.1.0
 auth-service:
   enabled: true
 project-service:
