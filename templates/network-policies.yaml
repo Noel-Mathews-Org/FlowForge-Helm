@@ -95,7 +95,9 @@ spec:
             cidr: 10.96.0.0/12
     - to:
         - ipBlock:
-            cidr: 0.0.0.0/0 # Allow internet access for SMTP
+            cidr: 0.0.0.0/0 # IPv4
+        - ipBlock:
+            cidr: ::/0 # IPv6
       ports:
         - protocol: TCP
           port: 587
