@@ -9,6 +9,8 @@ frontend:
     tag: v1.1.0
 auth-service:
   enabled: true
+  image:
+    tag: v1.1.0
 project-service:
   enabled: true
 task-service:
