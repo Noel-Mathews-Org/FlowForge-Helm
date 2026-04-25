@@ -13,6 +13,8 @@ auth-service:
     tag: v1.1.0
 project-service:
   enabled: true
+  image:
+    tag: v1.1.0
 task-service:
   enabled: true
 analysis-service:
