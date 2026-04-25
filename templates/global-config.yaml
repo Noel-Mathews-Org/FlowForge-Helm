@@ -17,6 +17,7 @@ data:
   # Mail Config
   SMTP_HOST: "smtp.gmail.com"
   SMTP_PORT: "587"
+  SMTP_USERNAME: "bloodymarry77@gmail.com"
   SMTP_FROM_NAME: "FlowForge"
   FRONTEND_URL: "https://{{ .Values.global.domain }}"
   
