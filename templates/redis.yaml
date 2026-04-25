@@ -20,7 +20,6 @@ metadata:
 spec:
   serviceName: "redis"
   replicas: 1
-  minReadySeconds: 15
   selector:
     matchLabels:
       app: redis
