@@ -23,3 +23,5 @@ task-service:
     tag: v1.1.0
 analysis-service:
   enabled: true
+  image:
+    tag: v1.1.0
