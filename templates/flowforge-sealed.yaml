@@ -3,7 +3,7 @@ apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
   name: flowforge-secret
-  namespace: dev
+  namespace: {{ .Release.Namespace }}
 spec:
   encryptedData:
     DATABASE_PASSWORD: AgCSoKTUnzFyNpQex8sdlHaiDvFYXt4PZSUUo/DgMOcAzH6TJUSAjoX7hLhHcmzdaDZvXwJP2/cMkIiCJ1J1bllWspT/xGb+UcdZqwpM2NdcsvCSR+tLr0ToCLX9bY9hkRIM88kUYbeQGH+pniEGWZOR98OpR+dzNCwPPhFRGVuF672JMnJp4eTBqAN8N/qWKgpWFecRUlIUwZO/EzkDysOK4rfw2fyQmpyDnV4BK5upCeJIed/kvLTQ+i7as+1dx6ENEobW5Dn3mdzSSAIIcXAh8JWmdy9bziw5t+z3ywyKv03ldr2F9EhjtiZJp8WcwzJf7t0zp9xNyCsCC/eeyIPBqe0EL2z76BUcll5p7iVAmktYxOutCRrQXCHooe6n/toVBOmjHOCVXJ57FcfVT/kCBVv5sjBSIHTi34FYKHbbXdvJ/wCr1YEOa1z10lIDHRBLHIR9zwXO5DRvy8L7dILNFp1EGTWp8SYr5REYpLzOGeCzdy7FtlxK8VMfo7Xgvk119oiFofymQFYD7b0ZP5hs8D4z5gS7/euX+56Hxllu38aHvm23T1i0kBCjPzgvkw6OZaJyvzZ44K/qkrLIsVhF9ks3ykI0GDeukRRNXA/UGSzdAUHBZ+GpycYbVtMeF1/qykRg0ECbMcKuyn9TzRRUl7foy6gP90kIryVp3ShU2Ln8GpBLWwg83CyGtvlcEqiChq50b6CGqA==
@@ -12,4 +12,4 @@ spec:
   template:
     metadata:
       name: flowforge-secret
-      namespace: dev
+      namespace: {{ .Release.Namespace }}
