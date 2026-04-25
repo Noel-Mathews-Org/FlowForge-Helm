@@ -11,7 +11,7 @@ global:
 gateway:
   enabled: true
   image:
-    tag: cb90618
+    tag: e88633b
 frontend:
   enabled: true
   image:
