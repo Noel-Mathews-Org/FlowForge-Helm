@@ -31,4 +31,4 @@ task-service:
 analysis-service:
   enabled: true
   image:
-    tag: cb90618
+    tag: e88633b
