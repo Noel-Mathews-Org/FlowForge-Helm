@@ -12,9 +12,10 @@ spec:
     - Egress
   ingress:
     - from:
-        - namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: kgateway-system
+        - podSelector: {} # Allows the local Envoy to talk to the app
+    - from:
+        - ipBlock:
+            cidr: 0.0.0.0/0 # Allows HAProxy/External health checks if needed
   egress:
     - to:
         - namespaceSelector:
