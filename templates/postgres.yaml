@@ -30,6 +30,8 @@ spec:
         tier: data
         app: postgres
     spec:
+      securityContext:
+        fsGroup: 70
       containers:
       - name: postgres
         image: postgres:16-alpine
