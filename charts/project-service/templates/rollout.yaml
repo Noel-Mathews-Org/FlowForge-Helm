@@ -40,11 +40,15 @@ spec:
             - secretRef:
                 name: flowforge-secret
           env:
-            - name: DATABASE_URL
+            - name: DB_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  name: flowforge-config
-                  key: DATABASE_URL_PROJECT
+                secretKeyRef:
+                  name: flowforge-secret
+                  key: DATABASE_PASSWORD
+            - name: DATABASE_URL
+              value: "postgresql+asyncpg://{{ .Values.global.database.user }}:$(DB_PASSWORD)@{{ .Values.global.database.host }}:{{ .Values.global.database.port }}/project_db"
+            - name: REDIS_URL
+              value: "redis://{{ .Values.global.redis.host }}:{{ .Values.global.redis.port }}"
             - name: APP_PORT
               value: "8002"
             - name: GATEWAY_PORT
@@ -53,3 +57,15 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port }}
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 10

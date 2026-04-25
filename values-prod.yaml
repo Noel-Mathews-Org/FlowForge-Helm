@@ -1,6 +1,13 @@
 global:
   environment: prod
   domain: flowforge.fun
+  database:
+    host: postgres.prod.svc.cluster.local
+    port: "5432"
+    user: postgres
+  redis:
+    host: redis.prod.svc.cluster.local
+    port: "6379"
 gateway:
   enabled: true
   image:
@@ -25,3 +32,4 @@ analysis-service:
   enabled: true
   image:
     tag: v1.1.0
+
