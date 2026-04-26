@@ -19,11 +19,11 @@ frontend:
 auth-service:
   enabled: true
   image:
-    tag: 3892ae0
+    tag: 1ef2365
 project-service:
   enabled: true
   image:
-    tag: 3892ae0
+    tag: 1ef2365
 task-service:
   enabled: true
   image:
