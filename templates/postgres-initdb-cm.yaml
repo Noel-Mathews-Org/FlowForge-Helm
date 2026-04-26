@@ -31,7 +31,7 @@ data:
     );
     
     INSERT INTO users (email, hashed_password, full_name, role, org) VALUES
-    ('admin@stratum.com',   '$2b$12$tQAsvk..7eZ7z.6tU4oo2uCHc3p6wEEF0w/wF18KXXL/PBZJbeRn6', 'Admin User',   'admin',   'stratum'),
-    ('manager@stratum.com', '$2b$12$tQAsvk..7eZ7z.6tU4oo2uCHc3p6wEEF0w/wF18KXXL/PBZJbeRn6', 'Manager User', 'manager', 'stratum'),
-    ('user@stratum.com',    '$2b$12$tQAsvk..7eZ7z.6tU4oo2uCHc3p6wEEF0w/wF18KXXL/PBZJbeRn6', 'Regular User', 'member',  'stratum')
+    ('admin@flow.com',   '$2b$12$w68BjCU2O021Ofy7pLZo1ehupQC9IMsumwoHuPhh9keQYigqN9RqO', 'Admin User',   'admin',   'flowforge'),
+    ('manager@flow.com', '$2b$12$w68BjCU2O021Ofy7pLZo1ehupQC9IMsumwoHuPhh9keQYigqN9RqO', 'Manager User', 'manager', 'flowforge'),
+    ('user@flow.com',    '$2b$12$w68BjCU2O021Ofy7pLZo1ehupQC9IMsumwoHuPhh9keQYigqN9RqO', 'Regular User', 'member',  'flowforge')
     ON CONFLICT (email) DO NOTHING;
