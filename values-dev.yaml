@@ -27,7 +27,7 @@ project-service:
 task-service:
   enabled: true
   image:
-    tag: 3892ae0
+    tag: a97a9b2
 analysis-service:
   enabled: true
   image:
