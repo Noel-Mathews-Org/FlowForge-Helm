@@ -4,7 +4,7 @@ metadata:
   name: postgres
   namespace: {{ .Release.Namespace }}
 spec:
-  clusterIP: None # Headless Service
+  clusterIP: None 
   selector:
     app: postgres
   ports:

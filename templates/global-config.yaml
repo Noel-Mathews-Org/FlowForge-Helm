@@ -4,7 +4,6 @@ metadata:
   name: flowforge-config
   namespace: {{ .Release.Namespace }}
 data:
-  # Internal Networking
   AUTH_SERVICE_URL: "http://auth-service:80"
   PROJECT_SERVICE_URL: "http://project-service:80"
   TASK_SERVICE_URL: "http://task-service:80"
@@ -13,14 +12,10 @@ data:
   RATE_LIMIT_WINDOW_SECONDS: "60"
   GATEWAY_PORT: "8000"
   ALLOWED_ORIGINS: "http://localhost:3000,https://{{ .Values.global.domain }}"
-  
-  # Mail Config
   SMTP_HOST: "smtp.gmail.com"
   SMTP_PORT: "587"
   SMTP_USERNAME: "bloodymaryy77@gmail.com"
   SMTP_FROM_EMAIL: "bloodymaryy77@gmail.com"
   SMTP_FROM_NAME: "FlowForge"
   FRONTEND_URL: "https://{{ .Values.global.domain }}"
-  
-  # App Port
   APP_PORT: "80"

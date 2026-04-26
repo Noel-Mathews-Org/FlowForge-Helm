@@ -12,10 +12,10 @@ spec:
     - Egress
   ingress:
     - from:
-        - podSelector: {} # Allows the local Envoy to talk to the app
+        - podSelector: {} 
     - from:
         - ipBlock:
-            cidr: 0.0.0.0/0 # Allows HAProxy/External health checks if needed
+            cidr: 0.0.0.0/0 
   egress:
     - to:
         - namespaceSelector:
@@ -95,9 +95,9 @@ spec:
             cidr: 10.96.0.0/12
     - to:
         - ipBlock:
-            cidr: 0.0.0.0/0 # IPv4
+            cidr: 0.0.0.0/0 
         - ipBlock:
-            cidr: ::/0 # IPv6
+            cidr: ::/0 
       ports:
         - protocol: TCP
           port: 587
@@ -122,7 +122,6 @@ spec:
         - podSelector:
             matchLabels:
               tier: backend
-    # Adding gateway to data because Gateway needs Redis for rate limiting
     - from:
         - podSelector:
             matchLabels:
@@ -167,7 +166,6 @@ spec:
         - namespaceSelector:
             matchLabels:
               kubernetes.io/metadata.name: kgateway-system
-    # And potentially allowing internet traffic directly if exposed via other means
     - {}
   egress:
     - to:
