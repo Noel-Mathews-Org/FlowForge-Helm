@@ -19,7 +19,7 @@ frontend:
 auth-service:
   enabled: true
   image:
-    tag: e88633b
+    tag: 3892ae0
 project-service:
   enabled: true
   image:
