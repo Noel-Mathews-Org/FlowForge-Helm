@@ -8,7 +8,7 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 20
+      - setWeight: 50
       - pause: {}
   selector:
     matchLabels:
