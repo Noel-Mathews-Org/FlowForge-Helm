@@ -204,3 +204,26 @@ spec:
   policyTypes:
     - Ingress
     - Egress
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-gateway-proxy
+  namespace: {{ .Release.Namespace }}
+spec:
+  # Targets the Envoy proxy pod provisioned by kgateway
+  podSelector:
+    matchLabels:
+      gateway.networking.k8s.io/gateway-name: flowforge-gateway
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
