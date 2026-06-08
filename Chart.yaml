@@ -29,3 +29,7 @@ dependencies:
     version: 0.1.0
     repository: "file://./charts/analysis-service"
     condition: analysis-service.enabled
+  - name: notification-worker
+    version: 0.1.0
+    repository: "file://./charts/notification-worker"
+    condition: notification-worker.enabled

@@ -1,43 +1,22 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   namespace: {{ .Release.Namespace }}
+  labels:
+    tier: worker
+    app: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
-  strategy:
-    blueGreen:
-      activeService: {{ .Release.Name }}-{{ .Chart.Name }}-active
-      previewService: {{ .Release.Name }}-{{ .Chart.Name }}-preview
-      autoPromotionEnabled: false
-      previewReplicaCount: 1
-      scaleDownDelaySeconds: 30
   template:
     metadata:
       labels:
-        tier: frontend
+        tier: worker
         app: {{ .Release.Name }}-{{ .Chart.Name }}
     spec:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - {{ .Release.Name }}-{{ .Chart.Name }}
-              topologyKey: "kubernetes.io/hostname"
-      serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1001
       volumes:
         - name: secrets-store-inline
           csi:
@@ -49,8 +28,6 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - containerPort: {{ .Values.service.port }}
           volumeMounts:
             - name: secrets-store-inline
               mountPath: "/mnt/secrets-store"
@@ -66,12 +43,13 @@ spec:
                 secretKeyRef:
                   name: flowforge-secret
                   key: REDIS_PASSWORD
-            - name: APP_PORT
-              value: "3000"
-            - name: GATEWAY_PORT
-              value: "3000"
+            - name: REDIS_URL
+              value: "rediss://:$(REDIS_PASSWORD)@{{ .Values.global.redis.host }}:{{ .Values.global.redis.port }}"
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
 

@@ -2,12 +2,28 @@ global:
   environment: prod
   domain: flowforge.fun
   database:
-    host: postgres.prod.svc.cluster.local
+    host: "REPLACE_WITH_AZURE_POSTGRES_SERVER.postgres.database.azure.com"
     port: "5432"
-    user: postgres
+    user: "flowforgeadmin"
   redis:
-    host: redis.prod.svc.cluster.local
-    port: "6379"
+    host: "REPLACE_WITH_AZURE_REDIS_NAME.redis.cache.windows.net"
+    port: "6380"
+  azure:
+    tenantId: "bed24716-6a89-4b1d-96ff-3522f4dfa9c1"
+    keyvaultName: "flowforge-kv-prod"
+    keyvaultUrl: "https://flowforge-kv-prod.vault.azure.net"
+  entra:
+    clientId: "7cd2b208-eee0-40be-b2c5-7254a73b6b18"
+    groupPlatformAdmin: "f88b087f-2718-4597-8fb3-7d9a33a4cacd"
+    groupOrgOwner: "9ad27d09-b855-4886-9c12-9d0781f0d354"
+    groupManager: "cc5a18c3-b9fa-4b85-a3b0-4f6f50691498"
+    groupMember: "a37d3b93-88a3-40c5-8b15-f904b7552311"
+  ai:
+    endpoint: "https://capstone-project-resource.services.ai.azure.com/api/projects/capstone-project"
+    deployment: "summary-agent"
+  storage:
+    accountName: "flowforgestorage12"
+    container: "flowforge-reports"
 gateway:
   enabled: true
   image:
@@ -29,6 +45,10 @@ task-service:
   image:
     tag: v1.1.0
 analysis-service:
+  enabled: true
+  image:
+    tag: v1.1.0
+notification-worker:
   enabled: true
   image:
     tag: v1.1.0
