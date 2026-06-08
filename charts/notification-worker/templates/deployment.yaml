@@ -17,34 +17,15 @@ spec:
         tier: worker
         app: {{ .Release.Name }}-{{ .Chart.Name }}
     spec:
-      volumes:
-        - name: secrets-store-inline
-          csi:
-            driver: secrets-store.csi.k8s.io
-            readOnly: true
-            volumeAttributes:
-              secretProviderClass: "flowforge-keyvault"
+
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          volumeMounts:
-            - name: secrets-store-inline
-              mountPath: "/mnt/secrets-store"
-              readOnly: true
+
           envFrom:
             - configMapRef:
                 name: flowforge-config
-            - secretRef:
-                name: flowforge-secret
-          env:
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: flowforge-secret
-                  key: REDIS_PASSWORD
-            - name: REDIS_URL
-              value: "rediss://:$(REDIS_PASSWORD)@{{ .Values.global.redis.host }}:{{ .Values.global.redis.port }}"
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
