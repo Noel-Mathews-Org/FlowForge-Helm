@@ -37,7 +37,7 @@ task-service:
 analysis-service:
   enabled: true
   image:
-    tag: 6ee465f
+    tag: 2be66ca
 notification-worker:
   enabled: true
   image:
