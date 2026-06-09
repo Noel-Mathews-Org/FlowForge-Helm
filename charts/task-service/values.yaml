@@ -1,4 +1,4 @@
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: ghcr.io/noel-mathews-org/flowforge/task-service
@@ -10,10 +10,10 @@ service:
 
 resources:
   requests:
-    cpu: 100m
-    memory: 96Mi
+    cpu: 15m
+    memory: 64Mi
 
 hpa:
-  minReplicas: 2
+  minReplicas: 1
   maxReplicas: 4
   targetCPUUtilizationPercentage: 70

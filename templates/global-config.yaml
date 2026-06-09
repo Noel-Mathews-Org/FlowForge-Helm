@@ -22,6 +22,8 @@ data:
   APP_PORT: "80"
   ENTRA_TENANT_ID: "{{ .Values.global.azure.tenantId }}"
   ENTRA_CLIENT_ID: "{{ .Values.global.entra.clientId }}"
+  AZURE_CLIENT_ID: "{{ .Values.global.azure.managedIdentityClientId }}"
+  AZURE_TENANT_ID: "{{ .Values.global.azure.tenantId }}"
   AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "true"
   AZURE_STORAGE_ACCOUNT_NAME: "{{ .Values.global.storage.accountName }}"
   AZURE_STORAGE_CONTAINER: "{{ .Values.global.storage.container }}"
