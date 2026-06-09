@@ -40,4 +40,4 @@ analysis-service:
 notification-worker:
   enabled: true
   image:
-    tag: a97a9b2
+    tag: 6ee465f
