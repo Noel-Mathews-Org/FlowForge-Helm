@@ -1,34 +1,39 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  strategy:
-    canary:
-      steps:
-      - setWeight: 50
-      - pause: {}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
+  strategy:
+    blueGreen:
+      activeService: {{ .Release.Name }}-{{ .Chart.Name }}-active
+      previewService: {{ .Release.Name }}-{{ .Chart.Name }}-preview
+      autoPromotionEnabled: false
+      previewReplicaCount: 1
+      scaleDownDelaySeconds: 30
   template:
     metadata:
       labels:
-        tier: backend
+        tier: frontend
         app: {{ .Release.Name }}-{{ .Chart.Name }}
     spec:
       affinity:
         podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - {{ .Release.Name }}-{{ .Chart.Name }}
-            topologyKey: "kubernetes.io/hostname"
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - {{ .Release.Name }}-{{ .Chart.Name }}
+              topologyKey: "kubernetes.io/hostname"
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
       securityContext:
         runAsNonRoot: true
@@ -47,23 +52,11 @@ spec:
 
           env:
             - name: APP_PORT
-              value: "8004"
+              value: "3000"
             - name: GATEWAY_PORT
-              value: "8004"
+              value: "3000"
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: {{ .Values.service.port }}
-            initialDelaySeconds: 15
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: {{ .Values.service.port }}
-            initialDelaySeconds: 5
-            periodSeconds: 10
 

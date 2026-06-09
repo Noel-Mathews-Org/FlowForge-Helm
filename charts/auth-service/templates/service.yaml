@@ -1,32 +1,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}-active
-  namespace: {{ .Release.Namespace }}
-spec:
-  selector:
-    app: {{ .Release.Name }}-{{ .Chart.Name }}
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: {{ .Values.service.port }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}-preview
-  namespace: {{ .Release.Namespace }}
-spec:
-  selector:
-    app: {{ .Release.Name }}-{{ .Chart.Name }}
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: {{ .Values.service.port }}
----
-apiVersion: v1
-kind: Service
-metadata:
   name: {{ .Chart.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
@@ -36,3 +10,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: {{ .Values.service.port }}
+

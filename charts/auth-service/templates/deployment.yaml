@@ -1,15 +1,10 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  strategy:
-    canary:
-      steps:
-      - setWeight: 50
-      - pause: {}
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
@@ -47,9 +42,9 @@ spec:
 
           env:
             - name: APP_PORT
-              value: "8002"
+              value: "8001"
             - name: GATEWAY_PORT
-              value: "8002"
+              value: "8001"
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}

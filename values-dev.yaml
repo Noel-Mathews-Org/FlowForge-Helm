@@ -1,29 +1,18 @@
 global:
+  namespace: flowforge
   environment: dev
-  domain: dev.flowforge.fun
-  database:
-    host: "REPLACE_WITH_AZURE_POSTGRES_SERVER.postgres.database.azure.com"
-    port: "5432"
-    user: "flowforgeadmin"
-  redis:
-    host: "REPLACE_WITH_AZURE_REDIS_NAME.redis.cache.windows.net"
-    port: "6380"
+  domain: flowforge.fun
   azure:
     tenantId: "bed24716-6a89-4b1d-96ff-3522f4dfa9c1"
-    keyvaultName: "flowforge-kv-dev"
-    keyvaultUrl: "https://flowforge-kv-dev.vault.azure.net"
+    keyvaultName: "kv-dev-0nedgn"
+    keyvaultUrl: "https://kv-dev-0nedgn.vault.azure.net"
   entra:
-    clientId: "REPLACE_WITH_ENTRA_CLIENT_ID"
-    groupPlatformAdmin: "REPLACE_WITH_GROUP_ID_PLATFORM_ADMIN"
-    groupOrgOwner: "REPLACE_WITH_GROUP_ID_ORG_OWNER"
-    groupManager: "REPLACE_WITH_GROUP_ID_MANAGER"
-    groupMember: "REPLACE_WITH_GROUP_ID_MEMBER"
+    clientId: "7cd2b208-eee0-40be-b2c5-7254a73b6b18"
   ai:
-    endpoint: "REPLACE_WITH_AI_FOUNDRY_ENDPOINT_URL"
     deployment: "summary-agent"
   storage:
-    accountName: "REPLACE_WITH_STORAGE_ACCOUNT_NAME"
-    container: "flowforge-reports"
+    accountName: "sadev0nedgn"
+    container: "reports"
 gateway:
   enabled: true
   image:
