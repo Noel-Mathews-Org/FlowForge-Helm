@@ -3,16 +3,17 @@ global:
   environment: prod
   domain: flowforge.fun
   azure:
-    tenantId: "bed24716-6a89-4b1d-96ff-3522f4dfa9c1"
-    keyvaultName: "flowforge-kv-prod"
-    keyvaultUrl: "https://flowforge-kv-prod.vault.azure.net"
+    tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
+    keyvaultName: "kv-ff-j5564p"
+    keyvaultUrl: "https://kv-ff-j5564p.vault.azure.net"
+    managedIdentityClientId: "f2a97511-7636-40dd-a48a-4718fc704ee3"
   entra:
-    clientId: "7cd2b208-eee0-40be-b2c5-7254a73b6b18"
+    clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
   ai:
     deployment: "summary-agent"
   storage:
-    accountName: "flowforgestorage12"
-    container: "flowforge-reports"
+    accountName: "saffj5564p"
+    container: "application-reports"
 gateway:
   enabled: true
   image:
