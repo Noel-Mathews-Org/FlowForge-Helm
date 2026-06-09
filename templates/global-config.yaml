@@ -24,7 +24,7 @@ data:
   ENTRA_CLIENT_ID: "{{ .Values.global.entra.clientId }}"
   AZURE_CLIENT_ID: "{{ .Values.global.azure.managedIdentityClientId }}"
   AZURE_TENANT_ID: "{{ .Values.global.azure.tenantId }}"
-  AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "true"
+  AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "false"
   AZURE_STORAGE_ACCOUNT_NAME: "{{ .Values.global.storage.accountName }}"
   AZURE_STORAGE_CONTAINER: "{{ .Values.global.storage.container }}"
   AZURE_STORAGE_USE_MANAGED_IDENTITY: "false" # True if using workload identity, false if connection string is used (which it is, via Secret)
