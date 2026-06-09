@@ -22,18 +22,7 @@ spec:
         tier: frontend
         app: {{ .Release.Name }}-{{ .Chart.Name }}
     spec:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - {{ .Release.Name }}-{{ .Chart.Name }}
-              topologyKey: "kubernetes.io/hostname"
+
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
       securityContext:
         runAsNonRoot: true
