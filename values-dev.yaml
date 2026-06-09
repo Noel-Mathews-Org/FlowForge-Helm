@@ -33,7 +33,7 @@ project-service:
 task-service:
   enabled: true
   image:
-    tag: a97a9b2
+    tag: c080724
 analysis-service:
   enabled: true
   image:
