@@ -25,7 +25,7 @@ frontend:
 auth-service:
   enabled: true
   image:
-    tag: 2be66ca
+    tag: 17c8e62
 project-service:
   enabled: true
   image:
