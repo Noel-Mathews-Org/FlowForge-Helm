@@ -17,7 +17,7 @@ global:
 gateway:
   enabled: true
   image:
-    tag: 2be66ca
+    tag: 0037d90
 frontend:
   enabled: true
   image:
