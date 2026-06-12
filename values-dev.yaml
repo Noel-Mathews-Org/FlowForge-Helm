@@ -29,7 +29,7 @@ auth-service:
 project-service:
   enabled: true
   image:
-    tag: 0037d90
+    tag: 4d9670e
 task-service:
   enabled: true
   image:
