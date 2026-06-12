@@ -41,4 +41,4 @@ analysis-service:
 notification-worker:
   enabled: true
   image:
-    tag: 0037d90
+    tag: 4d9670e
