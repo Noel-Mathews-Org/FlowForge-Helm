@@ -21,7 +21,7 @@ gateway:
 frontend:
   enabled: true
   image:
-    tag: v1.1.0
+    tag: v2.0.0
 auth-service:
   enabled: true
   image:
@@ -42,4 +42,3 @@ notification-worker:
   enabled: true
   image:
     tag: v1.1.0
-
