@@ -1,7 +1,7 @@
 global:
   namespace: flowforge
   environment: dev
-  domain: flowforge.fun
+  domain: dev.flowforge.fun
   azure:
     tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
     keyvaultName: "kv-dev-ff-001"
