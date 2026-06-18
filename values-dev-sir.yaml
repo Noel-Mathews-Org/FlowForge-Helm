@@ -3,11 +3,17 @@ global:
   environment: dev
   domain: dev.flowforge.fun
   azure:
-    keyvaultName: "kv-prod-ff-48x9"
-    keyvaultUrl: "https://kv-prod-ff-48x9.vault.azure.net/"
-    managedIdentityClientId: "REPLACE_WITH_TERRAFORM_OUTPUT"
+    tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
+    keyvaultName: "kv-dev-ff-001"
+    keyvaultUrl: "https://kv-dev-ff-001.vault.azure.net/"
+    managedIdentityClientId: "b0f1c302-e938-4fb2-be9d-efbf5c02d9bb"
+  entra:
+    clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
+  ai:
+    deployment: "summary-agent"
   storage:
-    accountName: "stffprod48x9"
+    accountName: "stffdev001"
+    container: "app-data"
 gateway:
   enabled: true
   image:
