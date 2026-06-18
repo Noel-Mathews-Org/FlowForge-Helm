@@ -33,3 +33,7 @@ dependencies:
     version: 0.1.0
     repository: "file://./charts/notification-worker"
     condition: notification-worker.enabled
+  - name: integration-service
+    version: 0.1.0
+    repository: "file://./charts/integration-service"
+    condition: integration-service.enabled

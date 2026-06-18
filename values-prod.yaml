@@ -36,4 +36,8 @@ notification-worker:
   enabled: true
   image:
     tag: v1.1.0
+integration-service:
+  enabled: true
+  image:
+    tag: v1.1.0
 

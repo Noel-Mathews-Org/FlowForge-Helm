@@ -3,11 +3,11 @@ global:
   environment: dev
   domain: dev.flowforge.fun
   azure:
-    keyvaultName: "kv-prod-ff-48x9"
-    keyvaultUrl: "https://kv-prod-ff-48x9.vault.azure.net/"
+    keyvaultName: "kv-dev-ff-a1b2"
+    keyvaultUrl: "https://kv-dev-ff-a1b2.vault.azure.net/"
     managedIdentityClientId: "REPLACE_WITH_TERRAFORM_OUTPUT"
   storage:
-    accountName: "stffprod48x9"
+    accountName: "stffdeva1b2"
 gateway:
   enabled: true
   image:
@@ -36,3 +36,8 @@ notification-worker:
   enabled: true
   image:
     tag: 4d9670e
+integration-service:
+  enabled: true
+  image:
+    tag: 4d9670e
+
