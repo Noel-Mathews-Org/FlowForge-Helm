@@ -11,32 +11,28 @@ global:
 gateway:
   enabled: true
   image:
-    tag: v1.1.0
+    tag: v2.0.0
 frontend:
   enabled: true
   image:
-    tag: v1.1.0
+    tag: v2.0.1
 auth-service:
   enabled: true
   image:
-    tag: v1.1.0
+    tag: v2.0.0
 project-service:
   enabled: true
   image:
-    tag: v1.1.0
+    tag: v2.0.0
 task-service:
   enabled: true
   image:
-    tag: v1.1.0
+    tag: v2.0.0
 analysis-service:
   enabled: true
   image:
-    tag: v1.1.0
+    tag: v2.0.0
 notification-worker:
-  enabled: true
-  image:
-    tag: v1.1.0
-integration-service:
   enabled: true
   image:
     tag: v1.1.0
