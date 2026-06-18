@@ -1,8 +1,4 @@
 global:
-  azure:
-    tenantId: "9b268e03-4db3-41c1-9c63-c106982f5abd"
-  entra:
-    clientId: "efc06b91-6db5-4716-9811-a40385914c6c"
   ai:
     deployment: "summary-agent"
   storage:

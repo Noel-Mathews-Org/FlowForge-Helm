@@ -25,5 +25,4 @@ data:
   AZURE_STORAGE_CONTAINER: "{{ .Values.global.storage.container }}"
   AZURE_STORAGE_USE_MANAGED_IDENTITY: "true" # Uses AKS workload identity
   AZURE_KEYVAULT_URL: "{{ .Values.global.azure.keyvaultUrl }}"
-  INTEGRATION_SERVICE_URL: "http://integration-service.{{ .Release.Namespace }}.svc.cluster.local:80"
   GITHUB_ORG_NAME: "Noel-Mathews-Org"

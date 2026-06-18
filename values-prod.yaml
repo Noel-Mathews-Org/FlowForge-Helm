@@ -3,11 +3,14 @@ global:
   environment: prod
   domain: flowforge.fun
   azure:
-    keyvaultName: "kv-prod-ff-48x9"
-    keyvaultUrl: "https://kv-prod-ff-48x9.vault.azure.net/"
-    managedIdentityClientId: "REPLACE_WITH_TERRAFORM_OUTPUT"
+    tenantId: "9b268e03-4db3-41c1-9c63-c106982f5abd"
+    keyvaultName: "c573z-ff-prod"
+    keyvaultUrl: "https://c573z-ff-prod.vault.azure.net/"
+    managedIdentityClientId: "814a02a8-bfd4-41ca-b29d-2bc4b3e06416"
+  entra:
+    clientId: "efc06b91-6db5-4716-9811-a40385914c6c"
   storage:
-    accountName: "stffprod48x9"
+    accountName: "c573zffprod"
 gateway:
   enabled: true
   image:
