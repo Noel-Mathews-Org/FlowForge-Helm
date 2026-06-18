@@ -18,7 +18,7 @@ gateway:
 frontend:
   enabled: true
   image:
-    tag: 79afd52
+    tag: 290fe44
 auth-service:
   enabled: true
   image:
