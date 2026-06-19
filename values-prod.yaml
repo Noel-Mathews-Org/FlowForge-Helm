@@ -13,7 +13,6 @@ global:
     deployment: "summary-agent"
   storage:
     accountName: "saffj5564p"
-    container: "application-reports"
 gateway:
   enabled: true
   image:
