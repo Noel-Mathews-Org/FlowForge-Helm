@@ -3,38 +3,40 @@ global:
   environment: prod
   domain: flowforge.fun
   azure:
-    tenantId: "9b268e03-4db3-41c1-9c63-c106982f5abd"
-    keyvaultName: "c573z-ff-prod"
-    keyvaultUrl: "https://c573z-ff-prod.vault.azure.net/"
-    managedIdentityClientId: "814a02a8-bfd4-41ca-b29d-2bc4b3e06416"
+    tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
+    keyvaultName: "kv-ff-j5564p"
+    keyvaultUrl: "https://kv-ff-j5564p.vault.azure.net"
+    managedIdentityClientId: "f2a97511-7636-40dd-a48a-4718fc704ee3"
   entra:
-    clientId: "efc06b91-6db5-4716-9811-a40385914c6c"
+    clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
+  ai:
+    deployment: "summary-agent"
   storage:
-    accountName: "c573zffprod"
+    accountName: "saffj5564p"
 gateway:
   enabled: true
   image:
-    tag: v2.0.0
+    tag: v1.1.0
 frontend:
   enabled: true
   image:
-    tag: v2.0.1
+    tag: v1.1.0
 auth-service:
   enabled: true
   image:
-    tag: v2.0.0
+    tag: v1.1.0
 project-service:
   enabled: true
   image:
-    tag: v2.0.0
+    tag: v1.1.0
 task-service:
   enabled: true
   image:
-    tag: v2.0.0
+    tag: v1.1.0
 analysis-service:
   enabled: true
   image:
-    tag: v2.0.0
+    tag: v1.1.0
 notification-worker:
   enabled: true
   image:
