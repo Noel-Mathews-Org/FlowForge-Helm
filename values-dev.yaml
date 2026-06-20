@@ -1,16 +1,16 @@
 global:
   namespace: flowforge-dev
   environment: dev
-  domain: dev.flowforge.fun
+  domain: flowforge.fun
   azure:
     tenantId: "9b268e03-4db3-41c1-9c63-c106982f5abd"
-    keyvaultName: "kv-dev-ff-a1b2"
-    keyvaultUrl: "https://kv-dev-ff-a1b2.vault.azure.net/"
-    managedIdentityClientId: "REPLACE_WITH_TERRAFORM_OUTPUT"
+    keyvaultName: "kv-prod-zxy5j5"
+    keyvaultUrl: "https://kv-prod-zxy5j5.vault.azure.net/"
+    managedIdentityClientId: "e2af85fb-72d9-457f-a9b8-84573d77242e"
   entra:
     clientId: "efc06b91-6db5-4716-9811-a40385914c6c"
   storage:
-    accountName: "stffdeva1b2"
+    accountName: "zxy5j5ffprod"
 gateway:
   enabled: true
   image:
