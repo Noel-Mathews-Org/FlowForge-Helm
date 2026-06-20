@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flowforge-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Noel-Mathews-Org/FlowForge-Helm.git'
+    targetRevision: Cloud-Track-dev
+    path: .
+    helm:
+      valueFiles:
+        - values-common.yaml
+        - values-dev.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: flowforge
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
