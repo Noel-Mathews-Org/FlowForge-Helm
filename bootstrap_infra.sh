@@ -5,7 +5,7 @@ echo "?? Starting Kubernetes Infrastructure Bootstrapping..."
 
 echo "?? 1. Installing ArgoCD..."
 kubectl create namespace argocd || true
-kubectl apply --server-side -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply --server-side --force-conflicts -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 echo "? Waiting for ArgoCD pods to be ready (this may take a few minutes)..."
 sleep 15
@@ -17,7 +17,7 @@ sleep 5
 kubectl wait --for=condition=ready pod --all -n argocd --timeout=300s
 
 echo "?? 2. Installing Cert-Manager..."
-kubectl apply --server-side -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.1/cert-manager.yaml
+kubectl apply --server-side --force-conflicts -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.1/cert-manager.yaml
 
 echo "? Waiting for Cert-Manager pods to be ready..."
 sleep 15
