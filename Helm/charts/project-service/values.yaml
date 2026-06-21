@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: ghcr.io/noel-mathews-org/flowforge/project-service
@@ -10,10 +10,13 @@ service:
 
 resources:
   requests:
-    cpu: 15m
-    memory: 64Mi
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
 
 hpa:
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 4
   targetCPUUtilizationPercentage: 70

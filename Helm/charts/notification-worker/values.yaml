@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: ghcr.io/noel-mathews-org/flowforge/notification-worker
@@ -7,8 +7,13 @@ image:
 
 resources:
   requests:
-    cpu: 15m
-    memory: 64Mi
+    cpu: 100m
+    memory: 128Mi
   limits:
-    cpu: 200m
-    memory: 192Mi
+    cpu: 500m
+    memory: 512Mi
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 70
