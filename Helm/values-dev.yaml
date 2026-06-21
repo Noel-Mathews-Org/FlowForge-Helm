@@ -1,0 +1,48 @@
+global:
+  namespace: flowforge-dev
+  environment: dev
+  domain: dev.flowforge.fun
+  azure:
+    tenantId: "9b268e03-4db3-41c1-9c63-c106982f5abd"
+    keyvaultName: "kv-prod-zxy5j5"
+    keyvaultUrl: "https://kv-prod-zxy5j5.vault.azure.net/"
+    managedIdentityClientId: "e2af85fb-72d9-457f-a9b8-84573d77242e"
+  entra:
+    clientId: "efc06b91-6db5-4716-9811-a40385914c6c"
+  storage:
+    accountName: "zxy5j5ffprod"
+gateway:
+  enabled: true
+  image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/gateway
+    tag: 4d9670e
+frontend:
+  enabled: true
+  image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/frontend
+    tag: 20f1839
+auth-service:
+  enabled: true
+  image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/auth-service
+    tag: 4d9670e
+project-service:
+  enabled: true
+  image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/project-service
+    tag: 4d9670e
+task-service:
+  enabled: true
+  image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/task-service
+    tag: 4d9670e
+analysis-service:
+  enabled: true
+  image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/analysis-service
+    tag: 4d9670e
+notification-worker:
+  enabled: true
+  image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/notification-worker
+    tag: 4d9670e

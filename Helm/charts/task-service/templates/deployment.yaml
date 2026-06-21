@@ -13,6 +13,7 @@ spec:
       labels:
         tier: backend
         app: {{ .Release.Name }}-{{ .Chart.Name }}
+        azure.workload.identity/use: "true"
     spec:
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
       securityContext:
@@ -32,9 +33,9 @@ spec:
 
           env:
             - name: APP_PORT
-              value: "8002"
+              value: "8003"
             - name: GATEWAY_PORT
-              value: "8002"
+              value: "8003"
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
