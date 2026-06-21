@@ -35,7 +35,7 @@ task-service:
   enabled: true
   image:
     repository: flowforgeacr4r8ncj.azurecr.io/flowforge/task-service
-    tag: 90e5907
+    tag: 4e8e927
 analysis-service:
   enabled: true
   image:
