@@ -26,3 +26,4 @@ data:
   AZURE_STORAGE_USE_MANAGED_IDENTITY: "true" # Uses AKS workload identity
   AZURE_KEYVAULT_URL: "{{ .Values.global.azure.keyvaultUrl }}"
   GITHUB_ORG_NAME: "Noel-Mathews-Org"
+  REDIS_PREFIX: "{{ .Values.global.environment }}_"
