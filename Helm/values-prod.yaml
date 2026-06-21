@@ -17,7 +17,7 @@ gateway:
   enabled: true
   image:
     repository: flowforgeacr4r8ncj.azurecr.io/flowforge/gateway
-    tag: latest
+    tag: v2.0.1
 frontend:
   enabled: true
   image:
