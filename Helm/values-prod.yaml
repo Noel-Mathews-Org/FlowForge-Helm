@@ -22,7 +22,7 @@ frontend:
   enabled: true
   image:
     repository: flowforgeacr4r8ncj.azurecr.io/flowforge/frontend
-    tag: latest
+    tag: v2.0.3
 auth-service:
   enabled: true
   image:
@@ -48,4 +48,3 @@ notification-worker:
   image:
     repository: flowforgeacr4r8ncj.azurecr.io/flowforge/notification-worker
     tag: latest
-
