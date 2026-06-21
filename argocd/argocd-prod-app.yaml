@@ -15,8 +15,10 @@ spec:
         - values-prod.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: flowforge
+    namespace: flowforge-prod
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

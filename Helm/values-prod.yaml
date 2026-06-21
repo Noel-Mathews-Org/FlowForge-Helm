@@ -1,5 +1,5 @@
 global:
-  namespace: flowforge
+  namespace: flowforge-prod
   environment: prod
   domain: flowforge.fun
   azure:
@@ -16,29 +16,36 @@ global:
 gateway:
   enabled: true
   image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/gateway
     tag: v1.1.0
 frontend:
   enabled: true
   image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/frontend
     tag: v1.1.0
 auth-service:
   enabled: true
   image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/auth-service
     tag: v1.1.0
 project-service:
   enabled: true
   image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/project-service
     tag: v1.1.0
 task-service:
   enabled: true
   image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/task-service
     tag: v1.1.0
 analysis-service:
   enabled: true
   image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/analysis-service
     tag: v1.1.0
 notification-worker:
   enabled: true
   image:
+    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/notification-worker
     tag: v1.1.0
 
