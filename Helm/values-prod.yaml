@@ -32,7 +32,7 @@ project-service:
   enabled: true
   image:
     repository: flowforgeacr4r8ncj.azurecr.io/flowforge/project-service
-    tag: latest
+    tag: v2.0.1
 task-service:
   enabled: true
   image:
