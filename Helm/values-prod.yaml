@@ -42,7 +42,7 @@ analysis-service:
   enabled: true
   image:
     repository: flowforgeacr4r8ncj.azurecr.io/flowforge/analysis-service
-    tag: latest
+    tag: v2.0.1
 notification-worker:
   enabled: true
   image:
