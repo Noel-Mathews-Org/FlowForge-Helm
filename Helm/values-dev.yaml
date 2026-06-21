@@ -25,7 +25,7 @@ auth-service:
   enabled: true
   image:
     repository: flowforgeacr4r8ncj.azurecr.io/flowforge/auth-service
-    tag: 90e5907
+    tag: 4e8e927
 project-service:
   enabled: true
   image:
