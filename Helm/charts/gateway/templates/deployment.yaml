@@ -10,6 +10,8 @@ spec:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
   template:
     metadata:
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "true"
       labels:
         tier: gateway
         app: {{ .Release.Name }}-{{ .Chart.Name }}

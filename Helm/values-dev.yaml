@@ -4,45 +4,45 @@ global:
   domain: dev.flowforge.fun
   azure:
     tenantId: "9b268e03-4db3-41c1-9c63-c106982f5abd"
-    keyvaultName: "kv-prod-zxy5j5"
-    keyvaultUrl: "https://kv-prod-zxy5j5.vault.azure.net/"
-    managedIdentityClientId: "e2af85fb-72d9-457f-a9b8-84573d77242e"
+    keyvaultName: "kvlt-dev-4r8ncj"
+    keyvaultUrl: "https://kvlt-dev-4r8ncj.vault.azure.net/"
+    managedIdentityClientId: "0d30ddbb-ec6a-4362-8031-198cf686f285"
   entra:
-    clientId: "efc06b91-6db5-4716-9811-a40385914c6c"
+    clientId: "e2af85fb-72d9-457f-a9b8-84573d77242e"
   storage:
-    accountName: "zxy5j5ffprod"
+    accountName: "4r8ncjffdev"
 gateway:
   enabled: true
   image:
-    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/gateway
-    tag: 4d9670e
+    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/gateway
+    tag: latest
 frontend:
   enabled: true
   image:
-    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/frontend
-    tag: 20f1839
+    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/frontend
+    tag: latest
 auth-service:
   enabled: true
   image:
-    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/auth-service
-    tag: 4d9670e
+    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/auth-service
+    tag: latest
 project-service:
   enabled: true
   image:
-    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/project-service
-    tag: 4d9670e
+    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/project-service
+    tag: latest
 task-service:
   enabled: true
   image:
-    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/task-service
-    tag: 4d9670e
+    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/task-service
+    tag: latest
 analysis-service:
   enabled: true
   image:
-    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/analysis-service
-    tag: 4d9670e
+    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/analysis-service
+    tag: latest
 notification-worker:
   enabled: true
   image:
-    repository: flowforgeacrzxy5j5.azurecr.io/flowforge/notification-worker
-    tag: 4d9670e
+    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/notification-worker
+    tag: latest
