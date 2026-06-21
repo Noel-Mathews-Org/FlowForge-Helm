@@ -1,0 +1,36 @@
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 10Gi
+    ingress:
+      enabled: true
+      ingressClassName: azure/application-gateway
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        appgw.ingress.kubernetes.io/ssl-redirect: "true"
+      hosts:
+        - prometheus.flowforge.fun
+      tls:
+        - secretName: prometheus-tls
+          hosts:
+            - prometheus.flowforge.fun
+  grafana:
+    ingress:
+      enabled: true
+      ingressClassName: azure/application-gateway
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        appgw.ingress.kubernetes.io/ssl-redirect: "true"
+      hosts:
+        - grafana.flowforge.fun
+      tls:
+        - secretName: grafana-tls
+          hosts:
+            - grafana.flowforge.fun
+
