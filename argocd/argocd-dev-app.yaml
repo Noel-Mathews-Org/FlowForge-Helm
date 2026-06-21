@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/Noel-Mathews-Org/FlowForge-Helm.git'
     targetRevision: Cloud-Track-dev
-    path: .
+    path: Helm
     helm:
       valueFiles:
         - values-common.yaml
