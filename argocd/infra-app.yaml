@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Noel-Mathews-Org/FlowForge-Helm.git
-    targetRevision: main
+    targetRevision: Cloud-Track-dev
     path: infra
   destination:
     server: https://kubernetes.default.svc
