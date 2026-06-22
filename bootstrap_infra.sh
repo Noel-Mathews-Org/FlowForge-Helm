@@ -3,6 +3,7 @@ set -e
 
 echo "?? Starting Kubernetes Infrastructure Bootstrapping..."
 
+
 echo "?? 1. Installing ArgoCD..."
 kubectl create namespace argocd || true
 kubectl apply --server-side --force-conflicts -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
