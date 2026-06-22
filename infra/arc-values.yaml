@@ -1,5 +1,5 @@
-githubConfigUrl: "https://github.com/Noel-Mathews-Org/FlowForge"
-githubConfigSecret: "github-arc-secret" # Create this via kubectl or pipeline before installation
+authSecret:
+  name: "github-arc-secret"
 
 controllerServiceAccount:
   name: "arc-runner-sa"

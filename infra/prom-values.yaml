@@ -1,0 +1,65 @@
+prometheus:
+  prometheusSpec:
+    nodeSelector:
+      kubernetes.azure.com/mode: system
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: managed-csi
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+  ingress:
+    enabled: true
+    ingressClassName: "azure-application-gateway"
+    hosts:
+      - prometheus.flowforge.fun
+
+grafana:
+  persistence:
+    enabled: true
+    type: pvc
+    storageClassName: managed-csi
+    accessModes: ["ReadWriteOnce"]
+    size: 10Gi
+  nodeSelector:
+    kubernetes.azure.com/mode: system
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+  ingress:
+    enabled: true
+    ingressClassName: "azure-application-gateway"
+    hosts:
+      - grafana.flowforge.fun
+
+alertmanager:
+  alertmanagerSpec:
+    nodeSelector:
+      kubernetes.azure.com/mode: system
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+
+kube-state-metrics:
+  nodeSelector:
+    kubernetes.azure.com/mode: system
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+prometheus-node-exporter:
+  tolerations:
+    - operator: "Exists"

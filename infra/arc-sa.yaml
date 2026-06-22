@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: arc-runner-sa
+  namespace: arc-system
+  annotations:
+    azure.workload.identity/client-id: "24c52ed6-22a9-40ce-9207-eb1e2c01a9f8" # managed identity attached wiht this ARC

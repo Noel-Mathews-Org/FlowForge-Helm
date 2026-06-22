@@ -60,3 +60,6 @@ spec:
               port: {{ .Values.service.port }}
             initialDelaySeconds: 5
             periodSeconds: 10
+
+      nodeSelector:
+        agentpool: node
