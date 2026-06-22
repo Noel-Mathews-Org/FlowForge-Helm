@@ -1,0 +1,10 @@
+githubConfigUrl: "https://github.com/Noel-Mathews-Org/FlowForge"
+githubConfigSecret: "github-arc-secret" # Create this via kubectl or pipeline before installation
+
+controllerServiceAccount:
+  name: "arc-runner-sa"
+  annotations:
+    azure.workload.identity/client-id: "24c52ed6-22a9-40ce-9207-eb1e2c01a9f8"
+
+podLabels:
+  azure.workload.identity/use: "true"
