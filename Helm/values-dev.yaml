@@ -20,7 +20,7 @@ frontend:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/frontend
-    tag: 90e5907
+    tag: a381e53
 auth-service:
   enabled: true
   image:
