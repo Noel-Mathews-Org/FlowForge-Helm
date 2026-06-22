@@ -18,8 +18,11 @@ spec:
     metadata:
       annotations:
         instrumentation.opentelemetry.io/inject-nodejs: "true"
-      spec:
-
+      labels:
+        tier: frontend
+        app: {{ .Release.Name }}-{{ .Chart.Name }}
+        azure.workload.identity/use: "true"
+    spec:
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
       securityContext:
         runAsNonRoot: true
