@@ -62,4 +62,4 @@ spec:
             periodSeconds: 10
 
       nodeSelector:
-        agentpool: node
+        agentpool: node1
