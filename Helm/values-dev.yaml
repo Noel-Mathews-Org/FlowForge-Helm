@@ -45,4 +45,4 @@ notification-worker:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/notification-worker
-    tag: 0ac0376
+    tag: 14e4191
