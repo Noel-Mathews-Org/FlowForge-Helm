@@ -22,7 +22,7 @@ frontend:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/frontend
-    tag: latest
+    tag: v2.0.4
 auth-service:
   enabled: true
   image:
