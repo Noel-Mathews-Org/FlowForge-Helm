@@ -4,22 +4,20 @@ metadata:
   name: flowforge-network-policy
   namespace: {{ .Release.Namespace }}
 spec:
-  podSelector: {} # Selects ALL pods in this namespace
+  podSelector: {} 
   policyTypes:
     - Ingress
     - Egress
   
-  # ─── INGRESS RULES ────────────────────────────────────────────────────────
   ingress:
-    # 1. Allow Intra-Namespace traffic (pods in this namespace can talk to each other)
+
     - from:
         - podSelector: {}
           
-    # 2. Allow AGIC Ingress (Application Gateway)
+    # 2. Allow AGIC Ingress (Application Gateway Traffic)
     - from:
-        - namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: kube-system
+        - ipBlock:
+            cidr: 192.168.17.0/24
     
     # 3. Allow Prometheus Scraping
     - from:
