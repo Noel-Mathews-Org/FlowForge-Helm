@@ -9,19 +9,19 @@ metadata:
   labels:
     azure.workload.identity/use: "true"
 ---
-apiVersion: opentelemetry.io/v1alpha1
+apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
   name: flowforge-otel
   namespace: flowforge-prod
+  labels:
+    azure.workload.identity/use: "true"
 spec:
   mode: deployment
   serviceAccount: otel-collector-sa
   podAnnotations:
     azure.workload.identity/use: "true"
-  podLabels:
-    azure.workload.identity/use: "true"
-  config: |
+  config:
     receivers:
       otlp:
         protocols:
