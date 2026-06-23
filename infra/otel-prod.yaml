@@ -53,7 +53,7 @@ metadata:
   namespace: flowforge-prod
 spec:
   exporter:
-    endpoint: http://flowforge-otel-collector:4317
+    endpoint: http://flowforge-otel-collector:4318
   propagators:
     - tracecontext
     - baggage
