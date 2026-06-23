@@ -20,10 +20,10 @@ data:
   FRONTEND_URL: "https://{{ .Values.global.domain }}"
   APP_PORT: "80"
   AZURE_TENANT_ID: "{{ .Values.global.azure.tenantId }}"
-  AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "true"
+  AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "true" # uses managed identity , if false need to provide API Key
   AZURE_STORAGE_ACCOUNT_NAME: "{{ .Values.global.storage.accountName }}"
   AZURE_STORAGE_CONTAINER: "{{ .Values.global.storage.container }}"
-  AZURE_STORAGE_USE_MANAGED_IDENTITY: "true" # Uses AKS workload identity
+  AZURE_STORAGE_USE_MANAGED_IDENTITY: "true" # Uses Managed Identity , if false should proivde connection string
   AZURE_KEYVAULT_URL: "{{ .Values.global.azure.keyvaultUrl }}"
   GITHUB_ORG_NAME: "Noel-Mathews-Org"
   REDIS_PREFIX: "{{ .Values.global.environment }}_"

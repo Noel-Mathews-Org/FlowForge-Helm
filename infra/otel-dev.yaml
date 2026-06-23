@@ -1,0 +1,46 @@
+# DEV NAMESPACE
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: otel-collector-sa
+  namespace: flowforge-dev
+  annotations:
+    azure.workload.identity/client-id: "c36adeaf-f346-4ffb-9b87-73309e4678d9"
+  labels:
+    azure.workload.identity/use: "true"
+---
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: flowforge-otel
+  namespace: flowforge-dev
+spec:
+  mode: deployment
+  serviceAccount: otel-collector-sa
+  podAnnotations:
+    azure.workload.identity/use: "true"
+  podLabels:
+    azure.workload.identity/use: "true"
+  config: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+    exporters:
+      azuremonitor:
+        connection_string: "InstrumentationKey=14ac1cd5-e649-46be-ac36-deb70c53d426;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://centralindia.livediagnostics.monitor.azure.com/;ApplicationId=4556c7c2-bbee-4e62-8d8a-1807e2f015e7"
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          exporters: [azuremonitor]
+        metrics:
+          receivers: [otlp]
+          exporters: [azuremonitor]
+        logs:
+          receivers: [otlp]
+          exporters: [azuremonitor]
+---

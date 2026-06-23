@@ -6,9 +6,7 @@ global:
     tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
     keyvaultName: "kvlt-dev-m9mp04"
     keyvaultUrl: "https://kvlt-dev-m9mp04.vault.azure.net/"
-    managedIdentityClientId: "4b6676e9-5bf5-4f04-b5b7-83cf166d1bf3"
-    otelClientId: "c36adeaf-f346-4ffb-9b87-73309e4678d9"
-    appInsightsConnectionString: "InstrumentationKey=14ac1cd5-e649-46be-ac36-deb70c53d426;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://centralindia.livediagnostics.monitor.azure.com/;ApplicationId=4556c7c2-bbee-4e62-8d8a-1807e2f015e7"
+    managedIdentityClientId: "4b6676e9-5bf5-4f04-b5b7-83cf166d1bf3" # manged idenitty which gives access to keyvault and storage account
   entra:
     clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
   storage:
