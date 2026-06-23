@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flowforge-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    appgw.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: azure-application-gateway
+  tls:
+  - hosts:
+    - dev.flowforge.fun
+    - preview.dev.flowforge.fun
+    secretName: flowforge-tls
+  rules:
+  - host: dev.flowforge.fun
+    http:
+      paths:
+      - path: /api/
+        pathType: Prefix
+        backend:
+          service:
+            name: gateway
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+  - host: preview.dev.flowforge.fun
+    http:
+      paths:
+      - path: /api/
+        pathType: Prefix
+        backend:
+          service:
+            name: gateway
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-preview
+            port:
+              number: 80

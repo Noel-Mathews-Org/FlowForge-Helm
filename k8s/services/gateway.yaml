@@ -1,0 +1,126 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flowforge-gateway
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flowforge-gateway
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+  template:
+    metadata:
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "true"
+      labels:
+        tier: gateway
+        app: flowforge-gateway
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: flowforge-gateway
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+
+      containers:
+        - name: gateway
+          image: "flowforgeacrm9mp04.azurecr.io/flowforge/gateway:8a3c80c"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+
+          envFrom:
+            - configMapRef:
+                name: flowforge-config
+
+          env:
+            - name: APP_PORT
+              value: "8000"
+            - name: GATEWAY_PORT
+              value: "8000"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+      nodeSelector:
+        agentpool: node1
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flowforge-gateway
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: flowforge-gateway
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 4
+        periodSeconds: 15
+      selectPolicy: Max
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  namespace: default
+spec:
+  selector:
+    app: flowforge-gateway
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: flowforge-gateway
+  namespace: default
+  annotations:
+    azure.workload.identity/client-id: "4b6676e9-5bf5-4f04-b5b7-83cf166d1bf3"
+automountServiceAccountToken: false

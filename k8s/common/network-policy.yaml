@@ -2,21 +2,21 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: flowforge-network-policy
-  namespace: {{ .Release.Namespace }}
+  namespace: default
 spec:
   podSelector: {} 
   policyTypes:
     - Ingress
     - Egress
-  
+
   ingress:
+
     - from:
         - podSelector: {}
-          
     - from:
         - ipBlock:
-            cidr: 192.168.17.0/24 # AppGW IP Range
-    
+            cidr: 192.168.17.0/24
+
     - from:
         - namespaceSelector:
             matchLabels:
@@ -37,6 +37,7 @@ spec:
             matchLabels:
               kubernetes.io/metadata.name: cert-manager
 
+
   egress:
     - to:
         - podSelector: {}
@@ -53,23 +54,23 @@ spec:
 
     - to:
         - ipBlock:
-            cidr: 169.254.169.254/32 n#Azure Managed Identity Token Fetching
+            cidr: 169.254.169.254/32 # Azure naitive one to fetch token
       ports:
         - protocol: TCP
           port: 80
 
     - ports:
         - protocol: TCP
-          port: 443
+          port: 443 #HTTPS
 
     - ports:
         - protocol: TCP
-          port: 587
+          port: 587 # SMTP
 
     - ports:
         - protocol: TCP
-          port: 5432
+          port: 5432 # Postgresql
 
     - ports:
         - protocol: TCP
-          port: 10000
+          port: 10000 # Redis

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flowforge-config
+  namespace: default
+data:
+  AUTH_SERVICE_URL: "http://auth-service.default.svc.cluster.local:80"
+  PROJECT_SERVICE_URL: "http://project-service.default.svc.cluster.local:80"
+  TASK_SERVICE_URL: "http://task-service.default.svc.cluster.local:80"
+  ANALYTICS_SERVICE_URL: "http://analysis-service.default.svc.cluster.local:80"
+  RATE_LIMIT_REQUESTS: "100"
+  RATE_LIMIT_WINDOW_SECONDS: "60"
+  GATEWAY_PORT: "8000"
+  GATEWAY_URL: "http://gateway.default.svc.cluster.local:80"
+  ALLOWED_ORIGINS: "http://localhost:3000,https://dev.flowforge.fun"
+  SMTP_HOST: "smtp.gmail.com"
+  SMTP_PORT: "587"
+  SMTP_FROM_EMAIL: "bloodymaryy77@gmail.com"
+  SMTP_FROM_NAME: "FlowForge"
+  FRONTEND_URL: "https://dev.flowforge.fun"
+  APP_PORT: "80"
+  AZURE_TENANT_ID: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
+  AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "true" # uses managed identity , if false need to provide API Key
+  AZURE_STORAGE_ACCOUNT_NAME: "m9mp04ffdev"
+  AZURE_STORAGE_CONTAINER: ""
+  AZURE_STORAGE_USE_MANAGED_IDENTITY: "true" # Uses Managed Identity , if false should proivde connection string
+  AZURE_KEYVAULT_URL: "https://kvlt-dev-m9mp04.vault.azure.net/"
+  GITHUB_ORG_NAME: "Noel-Mathews-Org"
+  REDIS_PREFIX: "dev_"
