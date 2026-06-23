@@ -11,8 +11,8 @@ spec:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
   strategy:
     blueGreen:
-      activeService: {{ .Release.Name }}-{{ .Chart.Name }}
-      previewService: {{ .Release.Name }}-{{ .Chart.Name }}-preview
+      activeService: {{ .Chart.Name }}
+      previewService: {{ .Chart.Name }}-preview
       autoPromotionEnabled: false
   template:
     metadata:
