@@ -1,0 +1,46 @@
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "azure-application-gateway"
+    annotations:
+      appgw.ingress.kubernetes.io/backend-protocol: "http"
+    hostname: argocd.flowforge.fun
+  extraArgs:
+    - --insecure
+  nodeSelector:
+    kubernetes.azure.com/mode: system
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+repoServer:
+  nodeSelector:
+    kubernetes.azure.com/mode: system
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+controller:
+  nodeSelector:
+    kubernetes.azure.com/mode: system
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+redis:
+  image:
+    repository: redis
+    tag: 7.2.5-alpine
+  nodeSelector:
+    kubernetes.azure.com/mode: system
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"

@@ -8,6 +8,11 @@ spec:
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
   template:
     metadata:
       annotations:
@@ -55,3 +60,6 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
 
+
+      nodeSelector:
+        agentpool: node1

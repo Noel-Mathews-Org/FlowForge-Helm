@@ -3,46 +3,47 @@ global:
   environment: dev
   domain: dev.flowforge.fun
   azure:
-    tenantId: "9b268e03-4db3-41c1-9c63-c106982f5abd"
-    keyvaultName: "kvlt-dev-4r8ncj"
-    keyvaultUrl: "https://kvlt-dev-4r8ncj.vault.azure.net/"
-    managedIdentityClientId: "0d30ddbb-ec6a-4362-8031-198cf686f285"
+    tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
+    keyvaultName: "kvlt-dev-m9mp04"
+    keyvaultUrl: "https://kvlt-dev-m9mp04.vault.azure.net/"
+    managedIdentityClientId: "4b6676e9-5bf5-4f04-b5b7-83cf166d1bf3" # manged idenitty which gives access to keyvault and storage account
   entra:
-    clientId: "e2af85fb-72d9-457f-a9b8-84573d77242e"
+    clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
   storage:
-    accountName: "4r8ncjffdev"
+    accountName: "m9mp04ffdev"
 gateway:
   enabled: true
   image:
-    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/gateway
-    tag: 90e5907
+    repository: flowforgeacrm9mp04.azurecr.io/flowforge/gateway
+    tag: 8a3c80c
 frontend:
   enabled: true
   image:
-    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/frontend
-    tag: 90e5907
+    repository: flowforgeacrm9mp04.azurecr.io/flowforge/frontend
+    tag: 47b4d87
 auth-service:
   enabled: true
   image:
-    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/auth-service
-    tag: 90e5907
+    repository: flowforgeacrm9mp04.azurecr.io/flowforge/auth-service
+    tag: 8a3c80c
 project-service:
   enabled: true
   image:
-    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/project-service
-    tag: 90e5907
+    repository: flowforgeacrm9mp04.azurecr.io/flowforge/project-service
+    tag: 8a3c80c
 task-service:
   enabled: true
   image:
-    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/task-service
-    tag: 90e5907
+    repository: flowforgeacrm9mp04.azurecr.io/flowforge/task-service
+    tag: 8a3c80c
 analysis-service:
   enabled: true
+  aiManagedIdentityClientId: "978c249b-1ac1-475a-9138-e96be1ec0f44"
   image:
-    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/analysis-service
-    tag: 90e5907
+    repository: flowforgeacrm9mp04.azurecr.io/flowforge/analysis-service
+    tag: b3f05af
 notification-worker:
   enabled: true
   image:
-    repository: flowforgeacr4r8ncj.azurecr.io/flowforge/notification-worker
-    tag: 90e5907
+    repository: flowforgeacrm9mp04.azurecr.io/flowforge/notification-worker
+    tag: 14e4191

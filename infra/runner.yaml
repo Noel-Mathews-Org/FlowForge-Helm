@@ -1,0 +1,23 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: terraform-runner
+  namespace: arc-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        azure.workload.identity/use: "true"
+    spec:
+      repository: Noel-Mathews-Org/FlowForge-Terraform
+      labels:
+        - self-hosted
+      serviceAccountName: arc-runner-sa
+      nodeSelector:
+        kubernetes.azure.com/mode: system
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"

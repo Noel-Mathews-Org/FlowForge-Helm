@@ -11,6 +11,11 @@ spec:
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
   template:
     metadata:
       annotations:
@@ -18,7 +23,9 @@ spec:
       labels:
         tier: worker
         app: {{ .Release.Name }}-{{ .Chart.Name }}
+        azure.workload.identity/use: "true"
     spec:
+      serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
 
       containers:
         - name: {{ .Chart.Name }}
@@ -36,3 +43,6 @@ spec:
               cpu: {{ .Values.resources.limits.cpu }}
               memory: {{ .Values.resources.limits.memory }}
 
+
+      nodeSelector:
+        agentpool: node1
