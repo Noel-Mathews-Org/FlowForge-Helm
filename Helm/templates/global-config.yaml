@@ -21,7 +21,6 @@ data:
   APP_PORT: "80"
   AZURE_TENANT_ID: "{{ .Values.global.azure.tenantId }}"
   AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "true"
-  AZURE_FOUNDRY_ENDPOINT: "https://ai-m9mp04-8860b.openai.azure.com/"
   AZURE_STORAGE_ACCOUNT_NAME: "{{ .Values.global.storage.accountName }}"
   AZURE_STORAGE_CONTAINER: "{{ .Values.global.storage.container }}"
   AZURE_STORAGE_USE_MANAGED_IDENTITY: "true" # Uses AKS workload identity
