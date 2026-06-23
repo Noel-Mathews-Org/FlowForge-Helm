@@ -7,6 +7,8 @@ global:
     keyvaultName: "kvlt-prod-m9mp04"
     keyvaultUrl: "https://kvlt-prod-m9mp04.vault.azure.net/"
     managedIdentityClientId: "1241e0e6-acb1-4fce-a606-52e82e015e7b"
+    otelClientId: "c36adeaf-f346-4ffb-9b87-73309e4678d9"
+    appInsightsConnectionString: "InstrumentationKey=14ac1cd5-e649-46be-ac36-deb70c53d426;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://centralindia.livediagnostics.monitor.azure.com/;ApplicationId=4556c7c2-bbee-4e62-8d8a-1807e2f015e7"
   entra:
     clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
   ai:
