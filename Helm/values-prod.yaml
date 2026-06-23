@@ -43,10 +43,9 @@ analysis-service:
   aiManagedIdentityClientId: "41dd38b0-d0c6-4d0c-af2a-df8e6cf073e3"
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/analysis-service
-    tag: latest
+    tag: v2.0.2
 notification-worker:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/notification-worker
     tag: latest
-
