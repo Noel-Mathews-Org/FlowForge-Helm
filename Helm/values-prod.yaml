@@ -17,36 +17,36 @@ gateway:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/gateway
-    tag: latest
+    tag: 2.0.2
 frontend:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/frontend
-    tag: latest
+    tag: 2.0.4
 auth-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/auth-service
-    tag: latest
+    tag: 2.0.2
 project-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/project-service
-    tag: latest
+    tag: 2.0.2
 task-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/task-service
-    tag: latest
+    tag: 2.0.2
 analysis-service:
   enabled: true
   aiManagedIdentityClientId: "41dd38b0-d0c6-4d0c-af2a-df8e6cf073e3"
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/analysis-service
-    tag: latest
+    tag: 2.0.2
 notification-worker:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/notification-worker
-    tag: latest
+    tag: 2.0.2
 
