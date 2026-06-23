@@ -75,8 +75,8 @@ alertmanager:
     global:
       resolve_timeout: 5m
       smtp_smarthost: 'smtp.gmail.com:587'
-      smtp_from: 'your-email@gmail.com'  # Replace this via UI or later
-      smtp_auth_username: 'your-email@gmail.com' # Replace this via UI or later
+      smtp_from: 'bloodymaryy77@gmail.com'  
+      smtp_auth_username: 'noelmathews123@gmail.com' 
       smtp_require_tls: true
     route:
       group_by: ['namespace', 'alertname']
@@ -92,11 +92,10 @@ alertmanager:
       - name: 'slack-critical'
         slack_configs:
           - api_url_file: '/etc/alertmanager/secrets/alertmanager-secrets/slack_api_url'
-            channel: '#production-alerts'
             send_resolved: true
       - name: 'slack-and-email'
         email_configs:
-          - to: 'team@flowforge.fun'
+          - to: 'noelmathews123@gmail.com'
             auth_password_file: '/etc/alertmanager/secrets/alertmanager-secrets/smtp_password'
             send_resolved: true
   alertmanagerSpec:
@@ -122,3 +121,10 @@ kube-state-metrics:
 prometheus-node-exporter:
   tolerations:
     - operator: "Exists"
+
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
