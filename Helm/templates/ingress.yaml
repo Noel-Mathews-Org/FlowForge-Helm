@@ -10,6 +10,7 @@ spec:
   tls:
   - hosts:
     - {{ .Values.global.domain }}
+    - preview.{{ .Values.global.domain }}
     secretName: flowforge-tls
   rules:
   - host: {{ .Values.global.domain }}
@@ -27,5 +28,15 @@ spec:
         backend:
           service:
             name: frontend
+            port:
+              number: 80
+  - host: preview.{{ .Values.global.domain }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-preview
             port:
               number: 80

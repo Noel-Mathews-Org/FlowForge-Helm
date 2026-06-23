@@ -76,7 +76,7 @@ alertmanager:
       resolve_timeout: 5m
       smtp_smarthost: 'smtp.gmail.com:587'
       smtp_from: 'bloodymaryy77@gmail.com'  
-      smtp_auth_username: 'noelmathews123@gmail.com' 
+      smtp_auth_username: 'bloodymaryy77@gmail.com' 
       smtp_require_tls: true
     route:
       group_by: ['namespace', 'alertname']

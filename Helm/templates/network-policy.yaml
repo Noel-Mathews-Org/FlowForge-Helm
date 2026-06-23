@@ -1,0 +1,92 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: flowforge-network-policy
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector: {} # Selects ALL pods in this namespace
+  policyTypes:
+    - Ingress
+    - Egress
+  
+  # ─── INGRESS RULES ────────────────────────────────────────────────────────
+  ingress:
+    # 1. Allow Intra-Namespace traffic (pods in this namespace can talk to each other)
+    - from:
+        - podSelector: {}
+          
+    # 2. Allow AGIC Ingress (Application Gateway)
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+    
+    # 3. Allow Prometheus Scraping
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: monitoring
+
+    # 4. Allow ArgoCD (Health checks / syncs)
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: argocd
+
+    # 5. Allow ARC Runner (Integration tests)
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: arc-system
+
+    # 6. Allow Cert-Manager (ACME HTTP01 Challenges)
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: cert-manager
+
+  # ─── EGRESS RULES ─────────────────────────────────────────────────────────
+  egress:
+    # 1. Allow Intra-Namespace traffic
+    - to:
+        - podSelector: {}
+
+    # 2. Allow DNS resolution (CoreDNS in kube-system)
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+
+    # 3. Allow Azure Managed Identity Token Fetching (IMDS)
+    - to:
+        - ipBlock:
+            cidr: 169.254.169.254/32
+      ports:
+        - protocol: TCP
+          port: 80
+
+    # 4. Allow External APIs (Microsoft Graph, Key Vault, Entra ID) over HTTPS
+    # (Azure Firewall handles the strict FQDN allow-list)
+    - ports:
+        - protocol: TCP
+          port: 443
+
+    # 5. Allow SMTP (Notification Worker)
+    - ports:
+        - protocol: TCP
+          port: 587
+
+    # 6. Allow Postgres (Database)
+    - ports:
+        - protocol: TCP
+          port: 5432
+
+    # 7. Allow Redis (Cache)
+    - ports:
+        - protocol: TCP
+          port: 10000
