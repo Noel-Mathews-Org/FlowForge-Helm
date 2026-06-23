@@ -48,4 +48,4 @@ notification-worker:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/notification-worker
-    tag: latest
+    tag: v2.0.2
