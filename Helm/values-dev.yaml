@@ -38,6 +38,7 @@ task-service:
     tag: 8a3c80c
 analysis-service:
   enabled: true
+  aiManagedIdentityClientId: "978c249b-1ac1-475a-9138-e96be1ec0f44"
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/analysis-service
     tag: 8a3c80c

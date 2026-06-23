@@ -45,3 +45,18 @@ spec:
           receivers: [otlp]
           exporters: [azuremonitor]
 ---
+
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: flowforge-instrumentation
+  namespace: flowforge-dev
+spec:
+  exporter:
+    endpoint: http://flowforge-otel-collector:4317
+  propagators:
+    - tracecontext
+    - baggage
+  sampler:
+    type: always_on
+
