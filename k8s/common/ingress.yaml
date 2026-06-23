@@ -9,11 +9,11 @@ spec:
   ingressClassName: azure-application-gateway
   tls:
   - hosts:
-    - {{ .Values.global.domain }}
-    - preview.{{ .Values.global.domain }}
+    - dev.flowforge.fun
+    - preview.dev.flowforge.fun
     secretName: flowforge-tls
   rules:
-  - host: {{ .Values.global.domain }}
+  - host: dev.flowforge.fun
     http:
       paths:
       - path: /api/
@@ -30,7 +30,7 @@ spec:
             name: frontend
             port:
               number: 80
-  - host: preview.{{ .Values.global.domain }}
+  - host: preview.dev.flowforge.fun
     http:
       paths:
       - path: /api/

@@ -1,4 +1,33 @@
 prometheus:
+  additionalPrometheusRulesMap:
+    custom-flowforge-alerts:
+      groups:
+        - name: custom-application-alerts
+          rules:
+            - alert: PodCrashLoopingCustom
+              expr: sum by (pod, namespace) (increase(kube_pod_container_status_restarts_total[5m])) > 3
+              for: 1m
+              labels:
+                severity: critical
+              annotations:
+                summary: "Pod {{ $labels.pod }} is crash looping"
+                description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has restarted more than 3 times in the last 5 minutes."
+            - alert: PodPendingCustom
+              expr: kube_pod_status_phase{phase="Pending"} > 0
+              for: 5m
+              labels:
+                severity: warning
+              annotations:
+                summary: "Pod {{ $labels.pod }} is stuck in Pending state"
+                description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has been Pending for more than 5 minutes. Check node resources or PVCs."
+            - alert: NginxIngressHighErrorRate
+              expr: sum(rate(nginx_ingress_controller_requests{status=~"5.."}[5m])) / sum(rate(nginx_ingress_controller_requests[5m])) > 0.05
+              for: 5m
+              labels:
+                severity: critical
+              annotations:
+                summary: "High HTTP 500 Error Rate on Ingress"
+                description: "More than 5% of HTTP requests are returning 5XX errors."
   prometheusSpec:
     nodeSelector:
       kubernetes.azure.com/mode: system
@@ -42,7 +71,36 @@ grafana:
       - grafana.flowforge.fun
 
 alertmanager:
+  config:
+    global:
+      resolve_timeout: 5m
+      smtp_smarthost: 'smtp.gmail.com:587'
+      smtp_from: 'bloodymaryy77@gmail.com'  
+      smtp_auth_username: 'bloodymaryy77@gmail.com' 
+      smtp_require_tls: true
+    route:
+      group_by: ['namespace', 'alertname']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: 'slack-and-email'
+      routes:
+        - matchers:
+            - severity="critical"
+          receiver: 'slack-critical'
+    receivers:
+      - name: 'slack-critical'
+        slack_configs:
+          - api_url_file: '/etc/alertmanager/secrets/alertmanager-secrets/slack_api_url'
+            send_resolved: true
+      - name: 'slack-and-email'
+        email_configs:
+          - to: 'noelmathews123@gmail.com'
+            auth_password_file: '/etc/alertmanager/secrets/alertmanager-secrets/smtp_password'
+            send_resolved: true
   alertmanagerSpec:
+    secrets:
+      - alertmanager-secrets
     nodeSelector:
       kubernetes.azure.com/mode: system
     tolerations:
@@ -63,3 +121,10 @@ kube-state-metrics:
 prometheus-node-exporter:
   tolerations:
     - operator: "Exists"
+
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false

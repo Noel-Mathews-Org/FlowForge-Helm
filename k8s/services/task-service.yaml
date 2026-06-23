@@ -1,0 +1,126 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flowforge-task-service
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flowforge-task-service
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+  template:
+    metadata:
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "true"
+      labels:
+        tier: backend
+        app: flowforge-task-service
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: flowforge-task-service
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+
+      containers:
+        - name: task-service
+          image: "flowforgeacrm9mp04.azurecr.io/flowforge/task-service:8a3c80c"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8003
+
+          envFrom:
+            - configMapRef:
+                name: flowforge-config
+
+          env:
+            - name: APP_PORT
+              value: "8003"
+            - name: GATEWAY_PORT
+              value: "8003"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8003
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8003
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+      nodeSelector:
+        agentpool: node1
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flowforge-task-service
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: flowforge-task-service
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 4
+        periodSeconds: 15
+      selectPolicy: Max
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: task-service
+  namespace: default
+spec:
+  selector:
+    app: flowforge-task-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8003
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: flowforge-task-service
+  namespace: default
+  annotations:
+    azure.workload.identity/client-id: "4b6676e9-5bf5-4f04-b5b7-83cf166d1bf3"
+automountServiceAccountToken: false

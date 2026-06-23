@@ -1,0 +1,126 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flowforge-analysis-service
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flowforge-analysis-service
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
+  template:
+    metadata:
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "true"
+      labels:
+        tier: backend
+        app: flowforge-analysis-service
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: flowforge-analysis-service
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+
+      containers:
+        - name: analysis-service
+          image: "flowforgeacrm9mp04.azurecr.io/flowforge/analysis-service:b3f05af"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8004
+
+          envFrom:
+            - configMapRef:
+                name: flowforge-config
+
+          env:
+            - name: APP_PORT
+              value: "8004"
+            - name: GATEWAY_PORT
+              value: "8004"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8004
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8004
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+      nodeSelector:
+        agentpool: node1
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flowforge-analysis-service
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: flowforge-analysis-service
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 4
+        periodSeconds: 15
+      selectPolicy: Max
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: analysis-service
+  namespace: default
+spec:
+  selector:
+    app: flowforge-analysis-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8004
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: flowforge-analysis-service
+  namespace: default
+  annotations:
+    azure.workload.identity/client-id: "978c249b-1ac1-475a-9138-e96be1ec0f44"
+automountServiceAccountToken: false

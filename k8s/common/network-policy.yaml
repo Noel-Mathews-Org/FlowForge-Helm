@@ -1,0 +1,76 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: flowforge-network-policy
+  namespace: default
+spec:
+  podSelector: {} 
+  policyTypes:
+    - Ingress
+    - Egress
+
+  ingress:
+
+    - from:
+        - podSelector: {}
+    - from:
+        - ipBlock:
+            cidr: 192.168.17.0/24
+
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: monitoring
+
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: argocd
+
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: arc-system
+
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: cert-manager
+
+
+  egress:
+    - to:
+        - podSelector: {}
+
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+
+    - to:
+        - ipBlock:
+            cidr: 169.254.169.254/32 # Azure naitive one to fetch token
+      ports:
+        - protocol: TCP
+          port: 80
+
+    - ports:
+        - protocol: TCP
+          port: 443 #HTTPS
+
+    - ports:
+        - protocol: TCP
+          port: 587 # SMTP
+
+    - ports:
+        - protocol: TCP
+          port: 5432 # Postgresql
+
+    - ports:
+        - protocol: TCP
+          port: 10000 # Redis
