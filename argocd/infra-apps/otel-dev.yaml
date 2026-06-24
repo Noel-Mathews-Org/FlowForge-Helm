@@ -1,0 +1,26 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: otel-dev
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://open-telemetry.github.io/opentelemetry-helm-charts'
+      chart: opentelemetry-collector
+      targetRevision: 0.87.1
+      helm:
+        valueFiles:
+          - $values/infra/otel-dev.yaml
+    - repoURL: 'https://github.com/Noel-Mathews-Org/FlowForge-Helm.git'
+      targetRevision: Cloud-Track-dev
+      ref: values
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: flowforge-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
