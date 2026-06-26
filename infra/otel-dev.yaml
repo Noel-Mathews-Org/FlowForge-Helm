@@ -33,7 +33,7 @@ spec:
       debug:
         verbosity: detailed
       azuremonitor:
-        connection_string: "InstrumentationKey=14ac1cd5-e649-46be-ac36-deb70c53d426;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://centralindia.livediagnostics.monitor.azure.com/;ApplicationId=4556c7c2-bbee-4e62-8d8a-1807e2f015e7"
+        connection_string: "InstrumentationKey=73586d5a-f186-4a35-b316-7269efc93049;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://centralindia.livediagnostics.monitor.azure.com/;ApplicationId=60e0a7db-fefd-4a71-bfae-1cd369fc9696"
     service:
       pipelines:
         traces:
