@@ -7,15 +7,20 @@ global:
     keyvaultName: "kvlt-dev-22o4pc"
     keyvaultUrl: "https://kvlt-dev-22o4pc.vault.azure.net/"
     managedIdentityClientId: "4b6676e9-5bf5-4f04-b5b7-83cf166d1bf3" # manged idenitty which gives access to keyvault and storage account
+    managedIdentityName: "mi-flowforge-app-dev"
   entra:
     clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
   storage:
     accountName: "22o4pcffdev"
+    container: "flowforge-reports"
+  postgres:
+    host: "pgsql-22o4pc.postgres.database.azure.com"
+    dbName: "flowforge-dev"
 gateway:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/gateway
-    tag: 8a3c80c
+    tag: 07f448b
 frontend:
   enabled: true
   image:
@@ -25,25 +30,26 @@ auth-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/auth-service
-    tag: 8a3c80c
+    tag: 07f448b
 project-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/project-service
-    tag: 8a3c80c
+    tag: 07f448b
 task-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/task-service
-    tag: 8a3c80c
+    tag: 07f448b
 analysis-service:
   enabled: true
   aiManagedIdentityClientId: "978c249b-1ac1-475a-9138-e96be1ec0f44"
+  aiManagedIdentityName: "mi-ai-dev-m9mp04"
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/analysis-service
-    tag: b3f05af
+    tag: 07f448b
 notification-worker:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/notification-worker
-    tag: 14e4191
+    tag: 07f448b

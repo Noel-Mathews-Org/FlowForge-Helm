@@ -7,12 +7,17 @@ global:
     keyvaultName: "kvlt-prod-22o4pc"
     keyvaultUrl: "https://kvlt-prod-22o4pc.vault.azure.net/"
     managedIdentityClientId: "1241e0e6-acb1-4fce-a606-52e82e015e7b"
+    managedIdentityName: "mi-flowforge-app-prod"
   entra:
     clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
   ai:
     deployment: "summary-agent"
   storage:
     accountName: "22o4pcffprod"
+    container: "flowforge-reports"
+  postgres:
+    host: "pgsql-22o4pc.postgres.database.azure.com"
+    dbName: "flowforge-prod"
 gateway:
   enabled: true
   image:
@@ -41,6 +46,7 @@ task-service:
 analysis-service:
   enabled: true
   aiManagedIdentityClientId: "41dd38b0-d0c6-4d0c-af2a-df8e6cf073e3"
+  aiManagedIdentityName: "mi-ai-prod-m9mp04"
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/analysis-service
     tag: v2.0.2

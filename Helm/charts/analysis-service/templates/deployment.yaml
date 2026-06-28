@@ -43,6 +43,8 @@ spec:
               value: "8004"
             - name: GATEWAY_PORT
               value: "8004"
+            - name: AZURE_MANAGED_IDENTITY_NAME
+              value: {{ .Values.aiManagedIdentityName | quote }}
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
