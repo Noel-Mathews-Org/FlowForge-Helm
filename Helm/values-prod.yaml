@@ -4,15 +4,15 @@ global:
   domain: flowforge.fun
   azure:
     tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
-    keyvaultName: "kvlt-prod-m9mp04"
-    keyvaultUrl: "https://kvlt-prod-m9mp04.vault.azure.net/"
+    keyvaultName: "kvlt-prod-22o4pc"
+    keyvaultUrl: "https://kvlt-prod-22o4pc.vault.azure.net/"
     managedIdentityClientId: "1241e0e6-acb1-4fce-a606-52e82e015e7b"
   entra:
     clientId: "668b4772-3c2e-4b86-98e0-04c58199cfe5"
   ai:
     deployment: "summary-agent"
   storage:
-    accountName: "m9mp04ffprod"
+    accountName: "22o4pcffprod"
 gateway:
   enabled: true
   image:

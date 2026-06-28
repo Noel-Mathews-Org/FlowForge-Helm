@@ -15,7 +15,7 @@ spec:
           
     - from:
         - ipBlock:
-            cidr: 192.168.17.0/24 # AppGW IP Range
+            cidr: 10.1.1.0/24 # AppGW IP Range
     
     - from:
         - namespaceSelector:
