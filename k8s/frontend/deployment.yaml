@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}
-  namespace: {{ .Release.Namespace }}
+  name: flowforge-frontend
+  namespace: default
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-{{ .Chart.Name }}
+      app: flowforge-frontend
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -20,20 +20,20 @@ spec:
         instrumentation.opentelemetry.io/inject-nodejs: "true"
       labels:
         tier: frontend
-        app: {{ .Release.Name }}-{{ .Chart.Name }}
+        app: flowforge-frontend
         azure.workload.identity/use: "true"
     spec:
-      serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
+      serviceAccountName: flowforge-frontend
       securityContext:
         runAsNonRoot: true
         runAsUser: 1001
 
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: frontend
+          image: "flowforgeacrm9mp04.azurecr.io/flowforge/frontend:47b4d87"
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - containerPort: 3000
 
           envFrom:
             - configMapRef:
@@ -46,18 +46,18 @@ spec:
               value: "3000"
           resources:
             requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+              cpu: 100m
+              memory: 128Mi
           livenessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.service.port }}
+              port: 3000
             initialDelaySeconds: 15
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.service.port }}
+              port: 3000
             initialDelaySeconds: 5
             periodSeconds: 10
 
