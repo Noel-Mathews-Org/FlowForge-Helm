@@ -20,7 +20,7 @@ gateway:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/gateway
-    tag: 8a3c80c
+    tag: 07f448b
 frontend:
   enabled: true
   image:
