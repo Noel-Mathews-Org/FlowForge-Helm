@@ -22,7 +22,7 @@ gateway:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/gateway
-    tag: v2.0.2
+    tag: v2.0.3
 frontend:
   enabled: true
   image:
