@@ -2,6 +2,7 @@
 
 This repository contains the configuration, templates, and manifests required to deploy and monitor the **FlowForge** microservices application onto Kubernetes (specifically targeting Azure Kubernetes Service, or AKS). It supports GitOps-driven deployment using ArgoCD for both dev and prod environments.
 
+![Kubernetes Architecture](Kubernets%20White.png)
 ---
 
 ## Repository Structure
