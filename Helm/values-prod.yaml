@@ -32,7 +32,7 @@ auth-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/auth-service
-    tag: v2.0.2
+    tag: v2.0.3
 project-service:
   enabled: true
   image:
