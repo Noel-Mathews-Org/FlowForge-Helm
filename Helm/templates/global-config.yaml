@@ -27,3 +27,7 @@ data:
   AZURE_KEYVAULT_URL: "{{ .Values.global.azure.keyvaultUrl }}"
   GITHUB_ORG_NAME: "Noel-Mathews-Org"
   REDIS_PREFIX: "{{ .Values.global.environment }}_"
+  AZURE_DB_USE_MANAGED_IDENTITY: "true"
+  AZURE_POSTGRES_HOST: "{{ .Values.global.postgres.host }}"
+  AZURE_POSTGRES_DB_NAME: "{{ .Values.global.postgres.dbName }}"
+  AZURE_MANAGED_IDENTITY_NAME: "{{ .Values.global.azure.managedIdentityName }}"
