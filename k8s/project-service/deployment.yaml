@@ -29,7 +29,7 @@ spec:
 
       containers:
         - name: project-service
-          image: "flowforgeacrm9mp04.azurecr.io/flowforge/project-service:8a3c80c"
+          image: "flowforgeacrm9mp04.azurecr.io/flowforge/project-service:07f448b"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8002
@@ -62,65 +62,3 @@ spec:
 
       nodeSelector:
         agentpool: node1
-
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: flowforge-project-service
-  namespace: default
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: flowforge-project-service
-  minReplicas: 2
-  maxReplicas: 4
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  behavior:
-    scaleDown:
-      stabilizationWindowSeconds: 300
-      policies:
-      - type: Percent
-        value: 100
-        periodSeconds: 15
-    scaleUp:
-      stabilizationWindowSeconds: 0
-      policies:
-      - type: Percent
-        value: 100
-        periodSeconds: 15
-      - type: Pods
-        value: 4
-        periodSeconds: 15
-      selectPolicy: Max
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: project-service
-  namespace: default
-spec:
-  selector:
-    app: flowforge-project-service
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8002
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: flowforge-project-service
-  namespace: default
-  annotations:
-    azure.workload.identity/client-id: "4b6676e9-5bf5-4f04-b5b7-83cf166d1bf3"
-automountServiceAccountToken: false
