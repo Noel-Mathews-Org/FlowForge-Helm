@@ -48,7 +48,7 @@ analysis-service:
   aiManagedIdentityName: "mi-ai-dev-m9mp04"
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/analysis-service
-    tag: 07f448b
+    tag: 6f3f897
 notification-worker:
   enabled: true
   image:
