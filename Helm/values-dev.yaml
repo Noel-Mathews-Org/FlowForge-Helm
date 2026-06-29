@@ -36,7 +36,7 @@ project-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/project-service
-    tag: 07f448b
+    tag: f1ad5ce
 task-service:
   enabled: true
   image:
