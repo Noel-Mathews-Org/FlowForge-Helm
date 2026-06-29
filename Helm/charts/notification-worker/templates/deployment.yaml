@@ -30,6 +30,7 @@ spec:
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
       securityContext:
         runAsNonRoot: true
+        runAsUser: 1001
 
       containers:
         - name: {{ .Chart.Name }}
