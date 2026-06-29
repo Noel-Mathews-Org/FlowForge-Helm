@@ -41,7 +41,7 @@ task-service:
   enabled: true
   image:
     repository: flowforgeacrm9mp04.azurecr.io/flowforge/task-service
-    tag: 07f448b
+    tag: f1ad5ce
 analysis-service:
   enabled: true
   aiManagedIdentityClientId: "978c249b-1ac1-475a-9138-e96be1ec0f44"
