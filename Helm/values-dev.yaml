@@ -4,7 +4,7 @@ global:
   domain: dev.flowforge.fun
   azure:
     tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
-    keyvaultUrl: "https://kvlt-dev-22o4pc.vault.azure.net/"
+    keyvaultUrl: "https://kvlt-dev-40xtuj.vault.azure.net/"
     managedIdentityClientId: "4b6676e9-5bf5-4f04-b5b7-83cf166d1bf3"
     managedIdentityName: "mi-flowforge-app-dev"
   entra:
@@ -12,10 +12,10 @@ global:
   ai:
     deployment: "summary-agent"
   storage:
-    accountName: "22o4pcffdev"
+    accountName: "40xtujffdev"
     container: "flowforge-reports"
   postgres:
-    host: "pgsql-22o4pc.postgres.database.azure.com"
+    host: "pgsql-40xtuj.postgres.database.azure.com"
     dbName: "flowforge-dev"
 gateway:
   enabled: true
