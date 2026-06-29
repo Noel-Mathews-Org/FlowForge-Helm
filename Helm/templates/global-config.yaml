@@ -2,32 +2,29 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: flowforge-config
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.global.namespace }}
 data:
-  AUTH_SERVICE_URL: "http://auth-service.{{ .Release.Namespace }}.svc.cluster.local:80"
-  PROJECT_SERVICE_URL: "http://project-service.{{ .Release.Namespace }}.svc.cluster.local:80"
-  TASK_SERVICE_URL: "http://task-service.{{ .Release.Namespace }}.svc.cluster.local:80"
-  ANALYTICS_SERVICE_URL: "http://analysis-service.{{ .Release.Namespace }}.svc.cluster.local:80"
+  AUTH_SERVICE_URL: "http://auth-service.{{ .Values.global.namespace }}.svc.cluster.local:80"
+  PROJECT_SERVICE_URL: "http://project-service.{{ .Values.global.namespace }}.svc.cluster.local:80"
+  TASK_SERVICE_URL: "http://task-service.{{ .Values.global.namespace }}.svc.cluster.local:80"
+  ANALYTICS_SERVICE_URL: "http://analysis-service.{{ .Values.global.namespace }}.svc.cluster.local:80"
+  GATEWAY_URL: "http://gateway.{{ .Values.global.namespace }}.svc.cluster.local:80"
   RATE_LIMIT_REQUESTS: "100"
   RATE_LIMIT_WINDOW_SECONDS: "60"
-  GATEWAY_PORT: "8000"
-  GATEWAY_URL: "http://gateway.{{ .Release.Namespace }}.svc.cluster.local:80"
   ALLOWED_ORIGINS: "http://localhost:3000,https://{{ .Values.global.domain }}"
+  FRONTEND_URL: "https://{{ .Values.global.domain }}"
   SMTP_HOST: "smtp.gmail.com"
   SMTP_PORT: "587"
   SMTP_FROM_EMAIL: "bloodymaryy77@gmail.com"
   SMTP_FROM_NAME: "FlowForge"
-  FRONTEND_URL: "https://{{ .Values.global.domain }}"
-  APP_PORT: "80"
   AZURE_TENANT_ID: "{{ .Values.global.azure.tenantId }}"
-  AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "true" # uses managed identity , if false need to provide API Key
+  AZURE_MANAGED_IDENTITY_NAME: "{{ .Values.global.azure.managedIdentityName }}"
+  AZURE_FOUNDRY_USE_MANAGED_IDENTITY: "true"
   AZURE_STORAGE_ACCOUNT_NAME: "{{ .Values.global.storage.accountName }}"
   AZURE_STORAGE_CONTAINER: "{{ .Values.global.storage.container }}"
-  AZURE_STORAGE_USE_MANAGED_IDENTITY: "true" # Uses Managed Identity , if false should proivde connection string
+  AZURE_STORAGE_USE_MANAGED_IDENTITY: "true"
   AZURE_KEYVAULT_URL: "{{ .Values.global.azure.keyvaultUrl }}"
-  GITHUB_ORG_NAME: "Noel-Mathews-Org"
   REDIS_PREFIX: "{{ .Values.global.environment }}_"
   AZURE_DB_USE_MANAGED_IDENTITY: "true"
   AZURE_POSTGRES_HOST: "{{ .Values.global.postgres.host }}"
   AZURE_POSTGRES_DB_NAME: "{{ .Values.global.postgres.dbName }}"
-  AZURE_MANAGED_IDENTITY_NAME: "{{ .Values.global.azure.managedIdentityName }}"

@@ -2,17 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.global.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 50%
-      maxSurge: 50%
+      maxUnavailable: 25%
+      maxSurge: 25%
   template:
     metadata:
       annotations:
@@ -22,6 +23,7 @@ spec:
         app: {{ .Release.Name }}-{{ .Chart.Name }}
         azure.workload.identity/use: "true"
     spec:
+      terminationGracePeriodSeconds: 30
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
       securityContext:
         runAsNonRoot: true
@@ -39,14 +41,15 @@ spec:
                 name: flowforge-config
 
           env:
-            - name: APP_PORT
-              value: "8000"
             - name: GATEWAY_PORT
-              value: "8000"
+              value: {{ .Values.service.port | quote }}
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
           livenessProbe:
             httpGet:
               path: /health
@@ -59,7 +62,6 @@ spec:
               port: {{ .Values.service.port }}
             initialDelaySeconds: 5
             periodSeconds: 10
-
 
       nodeSelector:
         agentpool: node1

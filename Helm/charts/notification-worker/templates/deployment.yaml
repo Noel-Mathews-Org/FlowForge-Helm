@@ -2,20 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.global.namespace }}
   labels:
     tier: worker
     app: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 50%
-      maxSurge: 50%
+      maxUnavailable: 25%
+      maxSurge: 25%
   template:
     metadata:
       annotations:
@@ -25,7 +26,11 @@ spec:
         app: {{ .Release.Name }}-{{ .Chart.Name }}
         azure.workload.identity/use: "true"
     spec:
+      terminationGracePeriodSeconds: 60
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
 
       containers:
         - name: {{ .Chart.Name }}
@@ -42,7 +47,6 @@ spec:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
               memory: {{ .Values.resources.limits.memory }}
-
 
       nodeSelector:
         agentpool: node1

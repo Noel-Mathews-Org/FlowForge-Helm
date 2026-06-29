@@ -31,7 +31,7 @@ spec:
             endpoint: 0.0.0.0:4318
     exporters:
       azuremonitor:
-        connection_string: "InstrumentationKey=088eb5e8-088f-425f-8b48-51e2fd8b46b4;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://centralindia.livediagnostics.monitor.azure.com/;ApplicationId=8c6f9076-ad2a-4314-aa6e-ed3278d7bc51"
+        connection_string: "InstrumentationKey=01d7eea2-6a3b-4dbb-b0cb-22d148840b84;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://centralindia.livediagnostics.monitor.azure.com/;ApplicationId=587ceca0-46df-4780-8408-433914e1fe33"
     service:
       pipelines:
         traces:
