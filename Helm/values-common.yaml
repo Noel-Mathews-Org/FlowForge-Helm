@@ -1,5 +1,0 @@
-global:
-  ai:
-    deployment: "summary-agent"
-  storage:
-    container: "app-data"

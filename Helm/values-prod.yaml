@@ -4,7 +4,6 @@ global:
   domain: flowforge.fun
   azure:
     tenantId: "d8537334-bc24-4daf-95a8-bf4c9fb14394"
-    keyvaultName: "kvlt-prod-22o4pc"
     keyvaultUrl: "https://kvlt-prod-22o4pc.vault.azure.net/"
     managedIdentityClientId: "1241e0e6-acb1-4fce-a606-52e82e015e7b"
     managedIdentityName: "mi-flowforge-app-prod"
